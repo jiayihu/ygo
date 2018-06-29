@@ -1,0 +1,19 @@
+{
+  "name": "ygo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel -p 3000"
+  },
+  "keywords": [],
+  "author": "Jiayi Hu <jiayi.ghu@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "node-sass": "^4.9.0",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "bulma": "^0.7.1"
+  }
+}
