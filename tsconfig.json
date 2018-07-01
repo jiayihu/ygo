@@ -2,25 +2,17 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./dist",
     "sourceMap": true,
+    "strict": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
+    "target": "es2015",
     "lib": [
       "es2017",
       "es2018",
       "dom.iterable"
-    ],
-    "paths": {
-      "ng-animate": [
-        "dist/ng-animate"
-      ],
-      "ng-animate/*": [
-        "dist/ng-animate/*"
-      ]
-    }
+    ]
   }
 }

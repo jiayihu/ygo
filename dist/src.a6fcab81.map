@@ -1,1 +1,0 @@
-{"version":3,"sources":["ygo/src/index.js"],"names":["console","log"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,QAAQC,GAAR,CAAY,aAAZ","file":"src.a6fcab81.map","sourceRoot":"../..","sourcesContent":["console.log('Hello world');\n"]}
