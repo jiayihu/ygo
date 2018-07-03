@@ -39,9 +39,19 @@ module.exports = {
           IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { importLoaders: 1 } },
           'postcss-loader'
-        ]
+        ],
+        include: path.join(__dirname, 'src/css/')
       },
-      { test: /\.tsx?$/, loader: 'ts-loader' }
+      {
+        test: /\.css$/,
+        use: ['raw-loader', 'postcss-loader'],
+        include: path.join(__dirname, 'src/components/')
+      },
+      { test: /\.tsx?$/, loader: 'ts-loader' },
+      {
+        test: /\.html$/,
+        use: 'raw-loader'
+      }
     ]
   },
   plugins: IS_DEV ? devPlugins : prodPlugins
