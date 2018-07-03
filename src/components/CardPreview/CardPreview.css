@@ -1,0 +1,31 @@
+.card {
+  background-color: #67412e;
+  padding: 3rem 1rem 1rem;
+}
+
+.details {
+  background-color: white;
+  border-radius: 3px;
+  padding: 0.5rem;
+  padding-top: 6rem;
+  position: relative;
+}
+
+.details img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-50%);
+  width: 7rem;
+}
+
+.type {
+  left: 1rem;
+  position: absolute;
+  top: 1rem;
+}
+
+.content {
+  font-size: 0.875rem;
+  font-style: italic;
+}
