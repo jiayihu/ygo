@@ -17,8 +17,9 @@ class LatestCards extends HTMLElement {
       const cardsTemplate = cards
         .map(
           card => `
-            <ygo-card-preview class="column is-one-third">
-              ${card.name}
+            <ygo-card-preview name="${
+              card.name
+            }" cover="https://ygohub.com/card_images/5b11b31ccffd5.jpg" class="column is-one-third">
             </ygo-card-preview>
           `
         )

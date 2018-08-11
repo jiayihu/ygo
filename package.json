@@ -7,7 +7,7 @@
     "build": "webpack",
     "start": "webpack-serve --config ./webpack.config.js --port 3000"
   },
-  "browserlist": "> 5%",
+  "browserslist": "> 5%",
   "keywords": [],
   "author": "Jiayi Hu <jiayi.ghu@gmail.com>",
   "license": "MIT",
