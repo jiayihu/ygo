@@ -1,3 +1,4 @@
+import './App/App';
 import './Navbar/Navbar';
 import './FeaturedSets/FeaturedSets';
 import './LatestCards/LatestCards';

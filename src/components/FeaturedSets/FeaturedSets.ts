@@ -4,7 +4,7 @@ import { getFeaturedSets } from '../../services/sets';
 const templateEl = document.createElement('template');
 templateEl.innerHTML = template;
 
-class FeaturedSets extends HTMLElement {
+export class FeaturedSets extends HTMLElement {
   constructor() {
     super();
 

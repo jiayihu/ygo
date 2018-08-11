@@ -3,7 +3,7 @@ import template from './Navbar.html';
 const templateEl = document.createElement('template');
 templateEl.innerHTML = template;
 
-class Navbar extends HTMLElement {
+export class Navbar extends HTMLElement {
   constructor() {
     super();
 

@@ -12,19 +12,34 @@ enum Attribute {
   cover = 'cover'
 }
 
-class CardPreview extends HTMLElement {
+export class CardPreview extends HTMLElement {
   static get observedAttributes() {
     return ['name', 'cover'];
   }
 
-  coverEl: HTMLImageElement | null = null;
-  nameEl: HTMLHeadingElement | null = null;
+  private coverEl: HTMLImageElement | null = null;
+  private nameEl: HTMLHeadingElement | null = null;
 
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(templateEl.content.cloneNode(true));
+  }
+
+  get name(): string | null {
+    return this.getAttribute('name');
+  }
+  set name(value: string | null) {
+    value ? this.setAttribute('name', value) : this.removeAttribute('name');
+  }
+
+  get cover(): string | null {
+    return this.getAttribute('cover');
+  }
+  set cover(value: string | null) {
+    if (value) this.setAttribute('cover', value);
+    else throw new Error(`"cover" attribute is required for <ygo-card-preview>`);
   }
 
   connectedCallback() {

@@ -9,7 +9,7 @@ templateEL.innerHTML = `
   </div>
 `;
 
-class Spinner extends HTMLElement {
+export class Spinner extends HTMLElement {
   constructor() {
     super();
 

@@ -1,15 +1,22 @@
 import template from './LatestCards.html';
 import { getNewCards } from '../../services/cards';
+import { CardPreview } from '../CardPreview/CardPreview';
 
 const templateEl = document.createElement('template');
 templateEl.innerHTML = template;
 
-class LatestCards extends HTMLElement {
+export interface CardSelectionEvent extends CustomEvent {
+  detail: CardPreview;
+}
+
+export class LatestCards extends HTMLElement {
   constructor() {
     super();
 
     this.appendChild(templateEl.content.cloneNode(true));
   }
+
+  private listEl: HTMLUListElement | null = null;
 
   connectedCallback() {
     getNewCards().then(cards => {
@@ -26,11 +33,27 @@ class LatestCards extends HTMLElement {
           `
         )
         .join('');
-      const list = this.querySelector('ul') as HTMLUListElement;
+      this.listEl = this.querySelector('ul') as HTMLUListElement;
 
-      list.innerHTML = cardsTemplate;
+      if (this.listEl) {
+        this.listEl.innerHTML = cardsTemplate;
+        this.listEl.addEventListener('click', this.handleCardClick);
+      }
     });
   }
+
+  disconnectedCallback() {
+    if (this.listEl) this.listEl.removeEventListener('click', this.handleCardClick);
+  }
+
+  private handleCardClick = (event: MouseEvent) => {
+    const cardEl = event.target as HTMLElement;
+
+    if (cardEl instanceof CardPreview) {
+      const event = new CustomEvent('cardSelection', { detail: cardEl });
+      this.dispatchEvent(event);
+    }
+  };
 }
 
 customElements.define('ygo-latest-cards', LatestCards);
