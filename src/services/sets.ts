@@ -1,8 +1,8 @@
 import request from './api';
 import { shuffle } from '../utils';
-import { YGOSet } from '../types';
+import { YGOSet } from '../domain/types';
 
-export function getSet(name: string) {
+export function getSet(name: string): Promise<YGOSet> {
   const encodedName = encodeURIComponent(name);
 
   return request(`set_info?name=${encodedName}`)
@@ -22,7 +22,7 @@ export function getSet(name: string) {
     });
 }
 
-export function getFeaturedSets() {
+export function getFeaturedSets(): Promise<YGOSet[]> {
   return request('all_sets').then(response => {
     const featuredNames = shuffle(response.sets as string[]).slice(0, 4);
 
