@@ -1,6 +1,7 @@
-import template from './LatestCards.html';
-import { getNewCards } from '../../services/cards';
+import template from './ExpensiveCards.html';
+import { getMostExpensiveCards } from '../../services/cards';
 import { CardPreview } from '../CardPreview/CardPreview';
+import { getCardImage } from '../../domain/cards';
 
 const templateEl = document.createElement('template');
 templateEl.innerHTML = template;
@@ -9,7 +10,7 @@ export interface CardSelectionEvent extends CustomEvent {
   detail: CardPreview;
 }
 
-export class LatestCards extends HTMLElement {
+export class ExpensiveCards extends HTMLElement {
   constructor() {
     super();
 
@@ -19,14 +20,14 @@ export class LatestCards extends HTMLElement {
   private listEl: HTMLUListElement | null = null;
 
   connectedCallback() {
-    getNewCards().then(cards => {
-      console.log(cards);
-      const cardsTemplate = cards
+    getMostExpensiveCards().then(cardNames => {
+      console.log(cardNames);
+      const cardsTemplate = cardNames
         .map(
-          card => `
+          cardName => `
             <ygo-card-preview
-              name="${card.name}" 
-              cover="${card.image_path}" 
+              name="${cardName}" 
+              cover="${getCardImage(cardName)}" 
               class="column is-one-third is-one-quarter-desktop"
             >
             </ygo-card-preview>
@@ -56,4 +57,4 @@ export class LatestCards extends HTMLElement {
   };
 }
 
-customElements.define('ygo-latest-cards', LatestCards);
+customElements.define('ygo-expensive-cards', ExpensiveCards);

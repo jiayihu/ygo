@@ -2,10 +2,6 @@ export type EventHandler = (e: Event) => void;
 
 export interface YGOSet {
   name: string;
-  type: string;
-  regions: string[];
-  languages: string[];
-  release_date: string;
   cards: YGOCardPreview[];
 }
 
@@ -26,25 +22,24 @@ export enum YGOCardType {
   xyz = 'xyz'
 }
 
+export enum YGOCardFamily {
+  dark = 'dark',
+  divine = 'divine',
+  earth = 'earth',
+  fire = 'fire',
+  light = 'light',
+  water = 'water',
+  wind = 'wind'
+}
+
 export interface YGOCard {
   name: string;
-  image_path: string;
-  thumbnail_path: string;
   text: string;
+  cardType: YGOCardType;
   type: string;
-  number: string;
-  price_low: string;
-  price_avg: string;
-  price_high: string;
-  tcgplayer_link: string;
-  is_fusion: boolean;
-  is_link: boolean;
-  is_monster: boolean;
-  is_pendulum: boolean;
-  is_spell: boolean;
-  is_synchro: boolean;
-  is_trap: boolean;
-  is_xyz: boolean;
-  has_name_condition: boolean;
+  family: YGOCardFamily;
+  atk: number;
+  def: number;
+  level: number;
   property: string;
 }

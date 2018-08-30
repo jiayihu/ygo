@@ -1,6 +1,6 @@
 import template from './App.html';
 import style from './App.css';
-import { LatestCards, CardSelectionEvent } from '../LatestCards/LatestCards';
+import { ExpensiveCards, CardSelectionEvent } from '../ExpensiveCards/ExpensiveCards';
 import { EventHandler } from '../../domain/types';
 import { CardDetails } from '../CardDetails/CardDetails';
 import { getCard } from '../../services/cards';
@@ -20,16 +20,16 @@ export class App extends HTMLElement {
   }
 
   private sectionEl: HTMLElement | null = null;
-  private latestCardsEl: LatestCards | null = null;
+  private expensiveCardsEl: ExpensiveCards | null = null;
   private cardDetailsEl: CardDetails | null = null;
 
   connectedCallback() {
     this.sectionEl = this.querySelector('.app-section');
-    this.latestCardsEl = this.querySelector('ygo-latest-cards');
+    this.expensiveCardsEl = this.querySelector('ygo-expensive-cards');
     this.cardDetailsEl = this.querySelector('ygo-card-details');
 
-    if (this.latestCardsEl) {
-      this.latestCardsEl.addEventListener('cardSelection', this
+    if (this.expensiveCardsEl) {
+      this.expensiveCardsEl.addEventListener('cardSelection', this
         .handleCardSelection as EventHandler);
     }
 
@@ -38,8 +38,8 @@ export class App extends HTMLElement {
   }
 
   disconnectedCallback() {
-    if (this.latestCardsEl) {
-      this.latestCardsEl.removeEventListener('cardSelection', this
+    if (this.expensiveCardsEl) {
+      this.expensiveCardsEl.removeEventListener('cardSelection', this
         .handleCardSelection as EventHandler);
     }
   }
@@ -52,11 +52,12 @@ export class App extends HTMLElement {
 
   private setActiveCard(cardName: string) {
     getCard(cardName).then(card => {
-      if (!this.latestCardsEl || !this.cardDetailsEl || !this.sectionEl) {
+      console.log(card);
+      if (!this.expensiveCardsEl || !this.cardDetailsEl || !this.sectionEl) {
         return;
       }
 
-      this.latestCardsEl.classList.toggle('is-hidden');
+      this.expensiveCardsEl.classList.toggle('is-hidden');
       this.cardDetailsEl.classList.toggle('is-hidden');
       this.sectionEl.style.backgroundColor = getCardColor(card);
 

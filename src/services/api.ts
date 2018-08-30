@@ -1,4 +1,4 @@
-const BASE_URL = 'https://www.ygohub.com/api';
+const BASE_URL = 'https://yugiohprices.com/api';
 
 export default function request(resource: string, options?: RequestInit): Promise<any> {
   return fetch(`${BASE_URL}/${resource}`, {
@@ -11,6 +11,6 @@ export default function request(resource: string, options?: RequestInit): Promis
         console.warn(response.error_msg || 'Error with API request');
       }
 
-      return response;
+      return response.data;
     });
 }

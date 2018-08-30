@@ -1,6 +1,7 @@
 import template from './CardDetails.html';
 import style from './CardDetails.css';
 import { getCard } from '../../services/cards';
+import { getCardImage } from '../../domain/cards';
 
 const templateEl = document.createElement('template');
 templateEl.innerHTML = `
@@ -55,7 +56,7 @@ export class CardDetails extends HTMLElement {
       if (!this.nameEl || !this.coverEl) return;
 
       this.nameEl.textContent = card.name;
-      this.coverEl.src = card.image_path;
+      this.coverEl.src = getCardImage(card.name);
     });
   }
 }
