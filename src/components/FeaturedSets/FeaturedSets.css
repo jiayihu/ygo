@@ -1,0 +1,10 @@
+@import '_partials/reset.css';
+
+.container {
+  text-align: center;
+}
+
+.title {
+  font-weight: 600;
+  line-height: 1.125;
+}

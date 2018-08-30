@@ -1,13 +1,18 @@
 import template from './Navbar.html';
+import style from './Navbar.css';
 
 const templateEl = document.createElement('template');
-templateEl.innerHTML = template;
+templateEl.innerHTML = `
+  <style>${style}</style>
+  ${template}
+`;
 
 export class Navbar extends HTMLElement {
   constructor() {
     super();
 
-    this.appendChild(templateEl.content.cloneNode(true));
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    shadowRoot.appendChild(templateEl.content.cloneNode(true));
   }
 }
 

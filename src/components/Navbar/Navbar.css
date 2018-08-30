@@ -1,0 +1,28 @@
+@import '_partials/reset.css';
+
+.navbar {
+  background-color: var(--primary);
+  color: #fff;
+  display: flex;
+  min-height: 3.25rem;
+  position: relative;
+  z-index: 30;
+}
+
+.navbar-brand {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  padding: 0 1rem;
+  transition: all 86ms ease-out;
+}
+
+.navbar-brand:hover {
+  background-color: var(--dark);
+  color: white;
+}
+
+.navbar-brand .navbar-item {
+  color: #fff;
+  text-decoration: none;
+}

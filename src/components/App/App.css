@@ -1,10 +1,36 @@
-body {
-  background-color: #67412e;
-  color: white;
-  font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-}
+@import '_partials/reset.css';
 
 .app-section {
+  background-color: var(--dark);
   min-height: calc(100vh - 3.25rem); /* 100vh - navbar height */
+  padding: 3rem 1.5rem;
+}
+
+.container {
+  margin: 0 auto;
+  position: relative;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 1.125;
+}
+
+.is-hidden {
+  display: none;
+}
+
+@media screen and (min-width: 1088px) {
+  .container {
+    max-width: 960px;
+    width: 960px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1152px;
+    width: 1152px;
+  }
 }

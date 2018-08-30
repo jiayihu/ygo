@@ -6,7 +6,7 @@ const IS_DEV = process.env.NODE_ENV !== 'production';
 
 const devPlugins = [
   cssImport({
-    path: ['css/']
+    path: ['src/css/']
   }),
   cssnext()
 ];

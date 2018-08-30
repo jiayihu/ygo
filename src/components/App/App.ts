@@ -8,8 +8,8 @@ import { CardDetails } from '../CardDetails/CardDetails';
 import { getCard } from '../../services/cards';
 import { getCardColor } from '../../domain/cards';
 
-const templateEL = document.createElement('template');
-templateEL.innerHTML = `
+const templateEl = document.createElement('template');
+templateEl.innerHTML = `
   <style>${style}</style>
   ${template}
 `;
@@ -18,7 +18,8 @@ export class App extends HTMLElement {
   constructor() {
     super();
 
-    this.appendChild(templateEL.content.cloneNode(true));
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    shadowRoot.appendChild(templateEl.content.cloneNode(true));
   }
 
   private sectionEl: HTMLElement | null = null;
@@ -26,9 +27,11 @@ export class App extends HTMLElement {
   private cardDetailsEl: CardDetails | null = null;
 
   connectedCallback() {
-    this.sectionEl = this.querySelector('.app-section');
-    this.expensiveCardsEl = this.querySelector('ygo-expensive-cards');
-    this.cardDetailsEl = this.querySelector('ygo-card-details');
+    if (!this.shadowRoot) return;
+
+    this.sectionEl = this.shadowRoot.querySelector('.app-section');
+    this.expensiveCardsEl = this.shadowRoot.querySelector('ygo-expensive-cards');
+    this.cardDetailsEl = this.shadowRoot.querySelector('ygo-card-details');
 
     if (this.expensiveCardsEl) {
       this.expensiveCardsEl.addEventListener('cardSelection', this

@@ -1,7 +1,7 @@
 import style from './Spinner.css';
 
-const templateEL = document.createElement('template');
-templateEL.innerHTML = `
+const templateEl = document.createElement('template');
+templateEl.innerHTML = `
   <style>${style}</style>
   <div class="spinner">
     <div class="cube1"></div>
@@ -14,7 +14,7 @@ export class Spinner extends HTMLElement {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(templateEL.content.cloneNode(true));
+    shadowRoot.appendChild(templateEl.content.cloneNode(true));
   }
 }
 

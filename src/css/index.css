@@ -1,4 +1,3 @@
 @import '_partials/variables.css';
-@import '_partials/margins.css';
-@import '_partials/padding.css';
-@import '_partials/width.css';
+@import '_partials/reset.css';
+@import '_partials/generic.css';

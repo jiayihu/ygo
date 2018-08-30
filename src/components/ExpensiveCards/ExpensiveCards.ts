@@ -1,10 +1,14 @@
 import template from './ExpensiveCards.html';
+import style from './ExpensiveCards.css';
 import { getMostExpensiveCards } from '../../services/cards';
 import { CardPreview } from '../CardPreview/CardPreview';
 import { getCardImage } from '../../domain/cards';
 
 const templateEl = document.createElement('template');
-templateEl.innerHTML = template;
+templateEl.innerHTML = `
+  <style>${style}</style>
+  ${template}
+`;
 
 export interface CardSelectionEvent extends CustomEvent {
   detail: CardPreview;
@@ -14,27 +18,28 @@ export class ExpensiveCards extends HTMLElement {
   constructor() {
     super();
 
-    this.appendChild(templateEl.content.cloneNode(true));
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    shadowRoot.appendChild(templateEl.content.cloneNode(true));
   }
 
   private listEl: HTMLUListElement | null = null;
 
   connectedCallback() {
     getMostExpensiveCards().then(cardNames => {
-      console.log(cardNames);
+      if (!this.shadowRoot) return;
       const cardsTemplate = cardNames
         .map(
           cardName => `
             <ygo-card-preview
               name="${cardName}" 
               cover="${getCardImage(cardName)}" 
-              class="column is-one-third is-one-quarter-desktop"
+              class="card"
             >
             </ygo-card-preview>
           `
         )
         .join('');
-      this.listEl = this.querySelector('ul') as HTMLUListElement;
+      this.listEl = this.shadowRoot.querySelector('ul') as HTMLUListElement;
 
       if (this.listEl) {
         this.listEl.innerHTML = cardsTemplate;

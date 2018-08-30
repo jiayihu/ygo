@@ -1,3 +1,5 @@
+@import '_partials/reset.css';
+
 .card {
   background-color: white;
   margin: 0 auto;
@@ -12,6 +14,8 @@
 
 .cover {
   margin: 1rem;
+  max-width: none;
+  height: 24rem;
   width: 16rem;
 }
 
@@ -65,7 +69,7 @@
   margin-top: 2rem;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 768px) {
   .card {
     display: flex;
   }

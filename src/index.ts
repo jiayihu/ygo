@@ -1,3 +1,6 @@
-import './css/vendor.scss';
-import './css/index.css';
+import globalStyle from './css/index.css';
 import './components';
+
+const styleEl = document.createElement('style');
+styleEl.textContent = globalStyle;
+document.head.appendChild(styleEl);
