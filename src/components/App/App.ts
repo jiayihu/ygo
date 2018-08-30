@@ -1,3 +1,5 @@
+import { darken } from 'polished';
+
 import template from './App.html';
 import style from './App.css';
 import { ExpensiveCards, CardSelectionEvent } from '../ExpensiveCards/ExpensiveCards';
@@ -34,7 +36,7 @@ export class App extends HTMLElement {
     }
 
     // @TODO: remove later
-    this.setActiveCard('Widget Kid');
+    this.setActiveCard('The Creator');
   }
 
   disconnectedCallback() {
@@ -59,7 +61,7 @@ export class App extends HTMLElement {
 
       this.expensiveCardsEl.classList.toggle('is-hidden');
       this.cardDetailsEl.classList.toggle('is-hidden');
-      this.sectionEl.style.backgroundColor = getCardColor(card);
+      this.sectionEl.style.backgroundColor = darken(0.2, getCardColor(card));
 
       this.cardDetailsEl.name = card.name;
     });

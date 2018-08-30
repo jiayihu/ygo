@@ -1,3 +1,10 @@
+body {
+  background-color: #67412e;
+  color: white;
+  font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
 .app-section {
   min-height: calc(100vh - 3.25rem); /* 100vh - navbar height */
 }

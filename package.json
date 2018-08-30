@@ -30,6 +30,7 @@
     "webpack-serve": "^1.0.4"
   },
   "dependencies": {
-    "bulma": "^0.7.1"
+    "bulma": "^0.7.1",
+    "polished": "^2.0.3"
   }
 }
