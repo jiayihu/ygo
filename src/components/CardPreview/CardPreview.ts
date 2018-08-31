@@ -9,16 +9,18 @@ templateEl.innerHTML = `
 
 enum Attribute {
   name = 'name',
-  cover = 'cover'
+  cover = 'cover',
+  price = 'price'
 }
 
 export class CardPreview extends HTMLElement {
   static get observedAttributes() {
-    return ['name', 'cover'];
+    return ['name', 'cover', 'price'];
   }
 
   private coverEl: HTMLImageElement | null = null;
   private nameEl: HTMLHeadingElement | null = null;
+  private priceEl: HTMLElement | null = null;
 
   constructor() {
     super();
@@ -42,14 +44,23 @@ export class CardPreview extends HTMLElement {
     else throw new Error(`"cover" attribute is required for <ygo-card-preview>`);
   }
 
+  get price(): string | null {
+    return this.getAttribute('price');
+  }
+  set price(value: string | null) {
+    value ? this.setAttribute('price', value) : this.removeAttribute('price');
+  }
+
   connectedCallback() {
     if (!this.shadowRoot) return;
 
     this.coverEl = this.shadowRoot.querySelector('.cover');
     this.nameEl = this.shadowRoot.querySelector('.name');
+    this.priceEl = this.shadowRoot.querySelector('.price');
 
     const name = this.getAttribute('name');
     const cover = this.getAttribute('cover');
+    const price = this.getAttribute('price');
 
     if (this.nameEl && name) {
       this.nameEl.textContent = name;
@@ -58,15 +69,23 @@ export class CardPreview extends HTMLElement {
     if (this.coverEl && cover) {
       this.coverEl.src = cover;
     }
+
+    if (this.priceEl && price) {
+      this.priceEl.textContent = `$${price}`;
+    }
   }
 
-  attributeChangedCallback(attr: Attribute, oldValue: string, newValue: string) {
+  attributeChangedCallback(attr: Attribute, _: string, newValue: string) {
     if (attr === 'name' && this.nameEl) {
       this.nameEl.textContent = newValue;
     }
 
     if (attr === 'cover' && this.coverEl) {
       this.coverEl.textContent = newValue;
+    }
+
+    if (attr === 'price' && this.priceEl) {
+      this.priceEl.textContent = `$${newValue}`;
     }
   }
 }

@@ -32,6 +32,13 @@ export enum YGOCardAttribute {
   wind = 'wind'
 }
 
+export interface YGOCardPreview {
+  name: string;
+  set: string;
+  price: number;
+  rarity: string;
+}
+
 export interface YGOCard {
   name: string;
   text: string;

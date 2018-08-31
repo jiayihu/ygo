@@ -15,12 +15,6 @@ a {
   position: relative;
 }
 
-.title {
-  font-size: 2rem;
-  font-weight: normal;
-  line-height: 1.125;
-}
-
 .is-hidden {
   display: none;
 }

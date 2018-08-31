@@ -1,5 +1,5 @@
 import request from './api';
-import { YGOCard, YGOCardType } from '../domain/types';
+import { YGOCard, YGOCardType, YGOCardPreview } from '../domain/types';
 import { omit } from '../utils';
 
 /**
@@ -38,8 +38,8 @@ export function getCard(name: string): Promise<YGOCard> {
   });
 }
 
-export function getMostExpensiveCards(number = 10): Promise<string[]> {
+export function getMostExpensiveCards(number = 4): Promise<YGOCardPreview[]> {
   return request(`top_100_cards`).then((response: any[]) => {
-    return response.slice(0, number).map(card => card.name);
+    return response.slice(0, number);
   });
 }

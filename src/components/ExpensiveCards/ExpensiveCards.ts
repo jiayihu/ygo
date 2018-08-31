@@ -25,14 +25,15 @@ export class ExpensiveCards extends HTMLElement {
   private listEl: HTMLUListElement | null = null;
 
   connectedCallback() {
-    getMostExpensiveCards().then(cardNames => {
+    getMostExpensiveCards().then(cards => {
       if (!this.shadowRoot) return;
-      const cardsTemplate = cardNames
+      const cardsTemplate = cards
         .map(
-          cardName => `
+          card => `
             <ygo-card-preview
-              name="${cardName}" 
-              cover="${getCardImage(cardName)}" 
+              name="${card.name}" 
+              cover="${getCardImage(card.name)}" 
+              price="${card.price}"
               class="card"
             >
             </ygo-card-preview>

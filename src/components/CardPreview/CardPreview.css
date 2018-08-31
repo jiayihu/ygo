@@ -1,17 +1,20 @@
 @import '_partials/reset.css';
 
 .card {
-  background-color: hsl(0, 0%, 96%);
+  background-color: #9d7150;
+  cursor: pointer;
   padding: 3rem 1rem 1rem;
   margin-top: 8rem;
 }
 
 .details {
-  align-items: flex-end;
-  background-color: white;
+  align-items: center;
+  background-color: #a1887f;
   display: flex;
+  flex-direction: column;
   height: 10rem;
   justify-content: center;
+  padding-top: 5rem;
   position: relative;
 }
 
@@ -23,8 +26,7 @@
   width: 10rem;
 }
 
-.details img:hover {
-  cursor: pointer;
+.details:hover img {
   transition: all 0.4s ease-in-out;
   transform: translate(-50%, -100%) scale(1.1);
 }
@@ -32,6 +34,15 @@
 .details h3 {
   line-height: 1;
   width: 80%;
+}
+
+.info {
+  margin-top: 0.5rem;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 @media (min-width: 768px) {
