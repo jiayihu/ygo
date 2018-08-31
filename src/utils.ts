@@ -1,5 +1,11 @@
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
+export function emptyEl(node: Node): void {
+  while (node.firstChild) {
+    node.removeChild(node.firstChild);
+  }
+}
+
 export function omit<T extends Record<string, any>, K extends string[]>(
   obj: T,
   keys: K

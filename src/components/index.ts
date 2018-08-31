@@ -1,7 +1,9 @@
 import './App/App';
-import './Navbar/Navbar';
+import './CardDetails/CardDetails';
+import './CardPreview/CardPreview';
 import './ExpensiveCards/ExpensiveCards';
 import './FeaturedSets/FeaturedSets';
-import './CardPreview/CardPreview';
-import './CardDetails/CardDetails';
+import './MonsterCard/MonsterCard';
+import './Navbar/Navbar';
+import './SpellTrapCard/SpellTrapCard';
 import './Spinner/Spinner';

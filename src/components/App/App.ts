@@ -37,9 +37,6 @@ export class App extends HTMLElement {
       this.expensiveCardsEl.addEventListener('cardSelection', this
         .handleCardSelection as EventHandler);
     }
-
-    // @TODO: remove later
-    this.setActiveCard('The Creator');
   }
 
   disconnectedCallback() {

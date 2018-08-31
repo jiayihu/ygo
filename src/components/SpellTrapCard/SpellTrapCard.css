@@ -1,0 +1,30 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 1.5rem;
+  margin: 1rem 0 0 0;
+  text-transform: uppercase;
+}
+
+.cardtype-info {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem auto;
+}
+
+.property {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+.text {
+  font-style: italic;
+  margin-top: 2rem;
+  text-align: left;
+  white-space: pre-line;
+}

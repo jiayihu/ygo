@@ -1,16 +1,39 @@
 import request from './api';
-import { YGOCard } from '../domain/types';
+import { YGOCard, YGOCardType } from '../domain/types';
 import { omit } from '../utils';
+
+/**
+ * Normalize API card type to YGOCardType
+ */
+function getCardType(card: any): YGOCardType {
+  if (card.card_type === 'monster') {
+    const type = card.type;
+
+    if (type.includes('Fusion')) return YGOCardType.fusion;
+    if (type.includes('Link')) return YGOCardType.link;
+    if (type.includes('Pendulum')) return YGOCardType.pendulum;
+    if (type.includes('Synchro')) return YGOCardType.synchro;
+    if (type.includes('Xyz')) return YGOCardType.xyz;
+
+    return YGOCardType.monster;
+  }
+
+  if (card.card_type === 'spell') return YGOCardType.spell;
+  if (card.card_type === 'trap') return YGOCardType.trap;
+
+  throw new Error(`Unknown card type ${card.card_type}`);
+}
 
 export function getCard(name: string): Promise<YGOCard> {
   const encodedName = encodeURIComponent(name);
 
   return request(`card_data/${encodedName}`).then(card => {
-    const cardType: string = card.card_type;
+    const cardType: string = getCardType(card);
 
     return {
-      ...omit(card, ['card_type']),
-      cardType
+      ...omit(card, ['card_type', 'family']),
+      cardType,
+      attribute: card.family
     } as YGOCard;
   });
 }

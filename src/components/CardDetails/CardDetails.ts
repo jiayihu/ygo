@@ -1,9 +1,12 @@
 import template from './CardDetails.html';
 import style from './CardDetails.css';
 import { getCard } from '../../services/cards';
-import { getCardImage, getCardColor } from '../../domain/cards';
-import { YGOCard, YGOCardType } from '../../domain/types';
+import { getCardImage, getCardColor, isMonster } from '../../domain/cards';
+import { YGOCard } from '../../domain/types';
 import { darken } from 'polished';
+import { emptyEl } from '../../utils';
+import { MonsterCard } from '../MonsterCard/MonsterCard';
+import { SpellTrapCard } from '../SpellTrapCard/SpellTrapCard';
 
 const templateEl = document.createElement('template');
 templateEl.innerHTML = `
@@ -68,43 +71,21 @@ export class CardDetails extends HTMLElement {
      * Render common data
      */
 
-    const coverEl: HTMLImageElement | null = this.shadowRoot.querySelector('.cover');
-    const nameEl: HTMLElement | null = this.shadowRoot.querySelector('.name');
-    const textEl: HTMLElement | null = this.shadowRoot.querySelector('.text');
-
-    if (!coverEl || !nameEl || !textEl) return;
+    const coverEl = this.shadowRoot.querySelector<HTMLImageElement>('.cover')!;
 
     coverEl.style.backgroundColor = darken(0.2, getCardColor(card));
     coverEl.src = getCardImage(card.name);
-    nameEl.textContent = card.name;
-    textEl.textContent = card.text;
 
     /**
      * Render cardType specific data
      */
 
-    const { cardType } = card;
+    const detailsEl = this.shadowRoot.querySelector<HTMLElement>('.details')!;
+    const cardTypeEl = isMonster(card) ? new MonsterCard() : new SpellTrapCard();
+    cardTypeEl.card = card;
 
-    if (cardType === YGOCardType.monster) this.renderMonster(card);
-    else throw new Error(`Unknown card type ${card.cardType}`);
-  }
-
-  private renderMonster(card: YGOCard) {
-    if (!this.shadowRoot) return;
-
-    const familyEl: HTMLImageElement | null = this.shadowRoot.querySelector('.family');
-    const typeEl: HTMLElement | null = this.shadowRoot.querySelector('.type');
-    const levelEl: HTMLElement | null = this.shadowRoot.querySelector('.level');
-    const atkEl: HTMLElement | null = this.shadowRoot.querySelector('.atk');
-    const defEl: HTMLElement | null = this.shadowRoot.querySelector('.def');
-
-    if (!familyEl || !typeEl || !levelEl || !atkEl || !defEl) return;
-
-    familyEl.src = `assets/family/${card.family.toUpperCase()}.png`;
-    typeEl.textContent = card.type;
-    levelEl.textContent = String(card.level);
-    atkEl.textContent = String(card.atk);
-    defEl.textContent = String(card.def);
+    emptyEl(detailsEl);
+    detailsEl.appendChild(cardTypeEl);
   }
 }
 

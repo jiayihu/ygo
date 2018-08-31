@@ -22,7 +22,7 @@ export enum YGOCardType {
   xyz = 'xyz'
 }
 
-export enum YGOCardFamily {
+export enum YGOCardAttribute {
   dark = 'dark',
   divine = 'divine',
   earth = 'earth',
@@ -37,7 +37,7 @@ export interface YGOCard {
   text: string;
   cardType: YGOCardType;
   type: string;
-  family: YGOCardFamily;
+  attribute: YGOCardAttribute;
   atk: number;
   def: number;
   level: number;
