@@ -29,12 +29,13 @@ export class ExpensiveCards extends HTMLElement {
       if (!this.shadowRoot) return;
       const cardsTemplate = cards
         .map(
-          card => `
+          (card, index) => `
             <ygo-card-preview
               name="${card.name}" 
               cover="${getCardImage(card.name)}" 
               price="${card.price}"
               class="card"
+              style="--theme: var(--${this.getPositionColor(index)})"
             >
             </ygo-card-preview>
           `
@@ -61,6 +62,10 @@ export class ExpensiveCards extends HTMLElement {
       this.dispatchEvent(event);
     }
   };
+
+  private getPositionColor(index: number) {
+    return index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? 'bronze' : 'primary';
+  }
 }
 
 customElements.define('ygo-expensive-cards', ExpensiveCards);

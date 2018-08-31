@@ -9,7 +9,7 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: normal;
   margin: 0;
 }
@@ -24,6 +24,12 @@
   flex: none;
   padding: 0.75rem;
   width: 33.3333%;
+}
+
+.card:nth-child(1),
+.card:nth-child(2),
+.card:nth-child(3) {
+  flex-basis: 33.3333%;
 }
 
 @media screen and (min-width: 1088px) {

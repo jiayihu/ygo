@@ -1,7 +1,7 @@
 @import '_partials/reset.css';
 
 .card {
-  background-color: #9d7150;
+  background-color: var(--theme, #9d7150);
   cursor: pointer;
   padding: 3rem 1rem 1rem;
   margin-top: 8rem;

@@ -54,7 +54,6 @@ export class App extends HTMLElement {
 
   private setActiveCard(cardName: string) {
     getCard(cardName).then(card => {
-      console.log(card);
       if (!this.expensiveCardsEl || !this.cardDetailsEl || !this.sectionEl) {
         return;
       }
