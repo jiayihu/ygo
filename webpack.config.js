@@ -1,8 +1,30 @@
 const path = require('path');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
-const devPlugins = [];
+const devPlugins = [
+  new GenerateSW({
+    clientsClaim: true,
+    skipWaiting: true,
+    runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/yugiohprices\.com\/api\/.+/,
+        handler: 'networkFirst',
+        options: {
+          cacheName: 'api-cache',
+          expiration: {
+            maxAgeSeconds: 60
+          },
+          cacheableResponse: {
+            statuses: [0, 200]
+          }
+        }
+      }
+    ],
+    cacheId: 'ygo'
+  })
+];
 const prodPlugins = [];
 
 module.exports = {

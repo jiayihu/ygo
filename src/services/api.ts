@@ -1,3 +1,4 @@
+// const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://yugiohprices.com/api';
 const BASE_URL = 'https://yugiohprices.com/api';
 
 export default function request(resource: string, options?: RequestInit): Promise<any> {
