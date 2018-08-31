@@ -63,6 +63,7 @@ export class MonsterCard extends HTMLElement {
     if (!attributeEl || !typeEl || !levelEl || !atkEl || !defEl) return;
 
     attributeEl.src = `assets/attribute/${card.attribute.toLowerCase()}.png`;
+    attributeEl.title = card.attribute;
     typeEl.textContent = card.type;
     levelEl.textContent = String(card.level);
     atkEl.textContent = String(card.atk);

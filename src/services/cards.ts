@@ -38,7 +38,7 @@ export function getCard(name: string): Promise<YGOCard> {
   });
 }
 
-export function getMostExpensiveCards(number = 1): Promise<string[]> {
+export function getMostExpensiveCards(number = 10): Promise<string[]> {
   return request(`top_100_cards`).then((response: any[]) => {
     return response.slice(0, number).map(card => card.name);
   });

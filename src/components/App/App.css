@@ -1,5 +1,9 @@
 @import '_partials/reset.css';
 
+a {
+  color: white;
+}
+
 .app-section {
   background-color: var(--dark);
   min-height: calc(100vh - 3.25rem); /* 100vh - navbar height */
@@ -19,6 +23,12 @@
 
 .is-hidden {
   display: none;
+}
+
+footer {
+  background-color: var(--darkest);
+  font-size: 0.875rem;
+  padding: 1rem 1rem 4rem 1rem;
 }
 
 @media screen and (min-width: 1088px) {

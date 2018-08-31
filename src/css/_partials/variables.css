@@ -1,6 +1,7 @@
 :root {
   --primary: #9d7150;
   --dark: #67412e;
+  --darkest: #4e342e;
 
   --spacing-none: 0;
   --spacing-extra-small: 0.25rem;

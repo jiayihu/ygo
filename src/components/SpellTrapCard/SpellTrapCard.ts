@@ -59,6 +59,7 @@ export class SpellTrapCard extends HTMLElement {
     if (!propertyEl) return;
 
     propertyEl.src = `assets/property/${card.property.toLowerCase()}.png`;
+    propertyEl.title = card.property;
   }
 }
 
