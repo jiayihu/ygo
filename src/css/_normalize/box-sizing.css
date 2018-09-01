@@ -1,0 +1,5 @@
+/** Custom addition to normalize.css */
+
+* {
+  box-sizing: border-box;
+}

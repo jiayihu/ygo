@@ -1,4 +1,6 @@
-@import '_partials/reset.css';
+@import '_normalize/box-sizing.css';
+@import '_normalize/sections.css';
+@import '_normalize/embedded.css';
 
 .card {
   background-color: var(--theme, #9d7150);
@@ -13,8 +15,8 @@
   display: flex;
   flex-direction: column;
   height: 10rem;
-  justify-content: center;
-  padding-top: 5rem;
+  justify-content: flex-start;
+  padding-top: 6rem;
   position: relative;
 }
 
@@ -32,6 +34,8 @@
 }
 
 .details h3 {
+  font-size: 1rem;
+  font-weight: normal;
   line-height: 1;
   width: 80%;
 }

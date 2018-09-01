@@ -1,4 +1,6 @@
-@import '_partials/reset.css';
+@import '_normalize/box-sizing.css';
+@import '_normalize/sections.css';
+@import '_normalize/embedded.css';
 
 .container {
   text-align: center;

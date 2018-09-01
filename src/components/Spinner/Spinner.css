@@ -1,4 +1,4 @@
-@import '_partials/reset.css';
+@import '_normalize/box-sizing.css';
 
 .spinner {
   margin: 1rem auto;

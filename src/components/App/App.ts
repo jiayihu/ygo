@@ -58,8 +58,8 @@ export class App extends HTMLElement {
         return;
       }
 
-      this.expensiveCardsEl.classList.toggle('is-hidden');
-      this.cardDetailsEl.classList.toggle('is-hidden');
+      this.expensiveCardsEl.setAttribute('hidden', String(true));
+      this.cardDetailsEl.removeAttribute('hidden');
       this.sectionEl.style.backgroundColor = darken(0.2, getCardColor(card));
 
       this.cardDetailsEl.name = card.name;
