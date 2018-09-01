@@ -7,6 +7,7 @@ const devPlugins = [
   new GenerateSW({
     clientsClaim: true,
     skipWaiting: true,
+    include: [], // Do not cache any static asset for the time being
     runtimeCaching: [
       {
         urlPattern: /^https?:\/\/yugiohprices\.com\/api\/.+/,

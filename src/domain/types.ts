@@ -1,5 +1,3 @@
-export type EventHandler = (e: Event) => void;
-
 export interface YGOSet {
   name: string;
   cards: YGOCardPreview[];

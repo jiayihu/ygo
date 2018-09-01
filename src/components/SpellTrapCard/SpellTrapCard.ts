@@ -1,66 +1,54 @@
-import template from './SpellTrapCard.html';
+import HyperHTMLElement from 'hyperhtml-element';
 import style from './SpellTrapCard.css';
 import { YGOCard } from '../../domain/types';
 
-const templateEl = document.createElement('template');
-templateEl.innerHTML = `
-  <style>${style}</style>
-  ${template}
-`;
-
-export class SpellTrapCard extends HTMLElement {
-  private _card: YGOCard | null = null;
+export class SpellTrapCard extends HyperHTMLElement {
+  data: YGOCard | null = null;
 
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(templateEl.content.cloneNode(true));
-  }
-
-  get card(): YGOCard | null {
-    return this._card;
-  }
-  set card(value: YGOCard | null) {
-    this._card = value;
-
-    if (value) this.renderSpellTrap(value);
+    this.attachShadow({ mode: 'open' });
   }
 
   connectedCallback() {
-    if (!this.shadowRoot) return;
-
-    const card = this._card;
-
-    if (card) this.renderSpellTrap(card);
+    if (this.data) this.render();
   }
 
-  private renderSpellTrap(card: YGOCard) {
-    if (!this.shadowRoot) return;
+  attributeChangedCallback() {
+    this.render();
+  }
 
-    /**
-     * Common card info
-     */
+  render() {
+    const card = this.data;
 
-    const nameEl: HTMLElement | null = this.shadowRoot.querySelector('.name');
-    const textEl: HTMLElement | null = this.shadowRoot.querySelector('.text');
+    if (!card) return null;
 
-    if (!nameEl || !textEl) return;
+    const propertySrc = `assets/property/${card.property.toLowerCase()}.png`;
 
-    nameEl.textContent = card.name;
-    textEl.textContent = card.text;
+    return this.html`
+      <style>${style}</style>
 
-    /**
-     * Specific card type info
-     */
+      <div class="heading">
+        <h3 class="name">${card.name}</h3>
+      </div>
 
-    const propertyEl: HTMLImageElement | null = this.shadowRoot.querySelector('.property');
+      <div class="cardtype-info">
+        <span>
+          <img
+            src=${propertySrc}
+            title=${card.property}
+            class="property"
+            alt="Attribute"
+            width="32"
+            height="32"
+          />
+        </span>
+      </div>
 
-    if (!propertyEl) return;
-
-    propertyEl.src = `assets/property/${card.property.toLowerCase()}.png`;
-    propertyEl.title = card.property;
+      <div class="text">${card.text}</div>
+    `;
   }
 }
 
-customElements.define('ygo-spelltrap-card', SpellTrapCard);
+SpellTrapCard.define('ygo-spelltrap-card');

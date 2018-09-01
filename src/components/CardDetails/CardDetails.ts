@@ -1,92 +1,80 @@
-import template from './CardDetails.html';
+import HyperHTMLElement from 'hyperhtml-element';
 import style from './CardDetails.css';
 import { getCard } from '../../services/cards';
 import { getCardImage, getCardColor, isMonster } from '../../domain/cards';
 import { YGOCard } from '../../domain/types';
 import { darken } from 'polished';
-import { emptyEl } from '../../utils';
-import { MonsterCard } from '../MonsterCard/MonsterCard';
-import { SpellTrapCard } from '../SpellTrapCard/SpellTrapCard';
 
-const templateEl = document.createElement('template');
-templateEl.innerHTML = `
-  <style>${style}</style>
-  ${template}
-`;
+type State = {
+  card: YGOCard | null;
+};
 
-enum Attribute {
-  name = 'name'
-}
+const { wire } = HyperHTMLElement;
 
-export class CardDetails extends HTMLElement {
+export class CardDetails extends HyperHTMLElement<State> {
+  get defaultState() {
+    return { card: null };
+  }
+
   static get observedAttributes() {
     return ['name'];
   }
 
+  name: string | null = null;
+
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(templateEl.content.cloneNode(true));
-  }
-
-  get name(): string | null {
-    return this.getAttribute('name');
-  }
-  set name(value: string | null) {
-    value ? this.setAttribute('name', value) : this.removeAttribute('name');
+    this.attachShadow({ mode: 'open' });
   }
 
   connectedCallback() {
     if (!this.shadowRoot) return;
 
-    const name = this.getAttribute('name');
+    const name = this.name;
 
-    if (name) this.updateCardDetails(name);
+    if (name) getCard(name).then(card => this.setState({ card }));
   }
 
-  attributeChangedCallback(attr: Attribute, oldValue: string, newValue: string) {
+  attributeChangedCallback(attr: string, oldValue: string, newValue: string) {
     if (attr === 'name' && newValue) {
-      this.updateCardDetails(newValue);
+      getCard(newValue).then(card => this.setState({ card }));
     }
   }
 
-  private updateCardDetails(name: string) {
-    getCard(name).then(card => {
-      console.log(card);
-      if (!this.shadowRoot) return;
+  render() {
+    const { card } = this.state;
 
-      const cardEl: HTMLElement | null = this.shadowRoot.querySelector('.card');
+    if (!card) return null;
 
-      if (cardEl) cardEl.style.backgroundColor = getCardColor(card);
+    const cardColor = getCardColor(card);
+    const coverColor = darken(0.2, cardColor);
+    const renderCard = wire(card);
 
-      this.renderCard(card);
-    });
-  }
+    return this.html`
+      <style>${style}</style>
 
-  private renderCard(card: YGOCard) {
-    if (!this.shadowRoot) return;
-
-    /**
-     * Render common data
-     */
-
-    const coverEl = this.shadowRoot.querySelector<HTMLImageElement>('.cover')!;
-
-    coverEl.style.backgroundColor = darken(0.2, getCardColor(card));
-    coverEl.src = getCardImage(card.name);
-
-    /**
-     * Render cardType specific data
-     */
-
-    const detailsEl = this.shadowRoot.querySelector<HTMLElement>('.details')!;
-    const cardTypeEl = isMonster(card) ? new MonsterCard() : new SpellTrapCard();
-    cardTypeEl.card = card;
-
-    emptyEl(detailsEl);
-    detailsEl.appendChild(cardTypeEl);
+      <div class="card" style=${`background-color: ${cardColor}`}>
+        <div class="cover-wrapper">
+          <img 
+            src=${getCardImage(card.name)}
+            class="cover"
+            alt="Cover"
+            width="256"
+            height="375"
+            style=${`background-color: ${coverColor}`}
+          />
+        </div>
+        <div class="details">
+          ${
+            isMonster(card)
+              ? renderCard`<ygo-monster-card data=${card} />`
+              : renderCard`<ygo-spelltrap-card data=${card} />`
+          }
+        </div>
+      </div>
+    `;
   }
 }
 
-customElements.define('ygo-card-details', CardDetails);
+CardDetails.define('ygo-card-details');
