@@ -3,25 +3,30 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
+function createCache(urlPattern) {
+  return {
+    urlPattern,
+    handler: 'cacheFirst',
+    options: {
+      cacheName: 'api-cache',
+      expiration: {
+        maxAgeSeconds: 60 * 60 * 24 // 1 day
+      },
+      cacheableResponse: {
+        statuses: [0, 200]
+      }
+    }
+  };
+}
+
 const devPlugins = [
   new GenerateSW({
     clientsClaim: true,
     skipWaiting: true,
     include: [], // Do not cache any static asset for the time being
     runtimeCaching: [
-      {
-        urlPattern: /^https?:\/\/yugiohprices\.com\/api\/.+/,
-        handler: 'cacheFirst',
-        options: {
-          cacheName: 'api-cache',
-          expiration: {
-            maxAgeSeconds: 60 * 60 * 24 // 1 day
-          },
-          cacheableResponse: {
-            statuses: [0, 200]
-          }
-        }
-      }
+      createCache(/^https?:\/\/yugiohprices\.com\/api\/.+/),
+      createCache(/^https?:\/\/cors-anywhere\.herokuapp\.com\/.+/)
     ],
     cacheId: 'ygo'
   })
