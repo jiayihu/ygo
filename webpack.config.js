@@ -1,4 +1,6 @@
 const path = require('path');
+const history = require('connect-history-api-fallback');
+const convert = require('koa-connect');
 const { GenerateSW } = require('workbox-webpack-plugin');
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
@@ -38,6 +40,9 @@ module.exports = {
   serve: {
     dev: {
       // publicPath: '/public/'
+    },
+    add: app => {
+      app.use(convert(history({})));
     }
   },
   devtool: 'eval',
