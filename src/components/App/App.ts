@@ -1,4 +1,5 @@
 import HyperHTMLElement from 'hyperhtml-element';
+import hyperApp from 'hyperhtml-app';
 import { darken } from 'polished';
 
 import style from './App.css';
@@ -11,10 +12,16 @@ type State = {
   card: YGOCard | null;
 };
 
+const { bind } = HyperHTMLElement;
+
 export class App extends HyperHTMLElement<State> {
   get defaultState(): State {
     return { card: null };
   }
+
+  private routerOutletEl: HTMLElement = document.createElement('div');
+  private router = new hyperApp();
+  private renderRoute = bind(this.routerOutletEl);
 
   constructor() {
     super();
@@ -22,7 +29,25 @@ export class App extends HyperHTMLElement<State> {
     this.attachShadow({ mode: 'open' });
   }
 
+  private configureRoutes() {
+    this.router.get('/card/:name', ctx => {
+      const cardName = ctx.params.name;
+
+      getCard(cardName).then(card => {
+        this.renderRoute`<ygo-card-details name=${ctx.params.name} />`;
+        this.setState({ card });
+      });
+    });
+
+    this.router.get('/', () => {
+      this.renderRoute`<ygo-expensive-cards oncardSelection=${this.handleCardSelection} />`;
+      this.setState({ card: null });
+    });
+  }
+
   connectedCallback() {
+    this.configureRoutes();
+    this.router.navigate('/');
     this.render();
   }
 
@@ -31,7 +56,7 @@ export class App extends HyperHTMLElement<State> {
 
     if (!cardName) return;
 
-    getCard(cardName).then(card => this.setState({ card }));
+    this.router.navigate(`/card/${cardName}`);
   };
 
   render() {
@@ -45,8 +70,7 @@ export class App extends HyperHTMLElement<State> {
 
       <section class="app-section" style=${`background-color: ${bgColor}`}>
         <div class="container">
-          <ygo-expensive-cards hidden=${card} oncardSelection=${this.handleCardSelection} />
-          <ygo-card-details hidden=${!card} name=${card ? card.name : null} />
+          ${this.routerOutletEl}
         </div>
       </section>
 

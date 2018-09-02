@@ -24,7 +24,7 @@ export class SpellTrapCard extends HyperHTMLElement {
 
     if (!card) return null;
 
-    const propertySrc = `assets/property/${card.property.toLowerCase()}.png`;
+    const propertySrc = `/assets/property/${card.property.toLowerCase()}.png`;
 
     return this.html`
       <style>${style}</style>

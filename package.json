@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "hyperhtml": "^2.13.0",
+    "hyperhtml-app": "^0.2.3",
     "hyperhtml-element": "^2.3.1",
     "polished": "^2.0.3"
   }

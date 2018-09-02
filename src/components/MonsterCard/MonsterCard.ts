@@ -24,7 +24,7 @@ export class MonsterCard extends HyperHTMLElement {
 
     if (!card) return null;
 
-    const attributeSrc = `assets/attribute/${card.attribute.toLowerCase()}.png`;
+    const attributeSrc = `/assets/attribute/${card.attribute.toLowerCase()}.png`;
 
     return this.html`
       <style>${style}</style>
@@ -32,7 +32,7 @@ export class MonsterCard extends HyperHTMLElement {
       <div class="heading">
         <span>
           <span class="level">${card.level}</span>
-          <img class="level-icon" src="assets/star.png" alt="Level" />
+          <img class="level-icon" src="/assets/star.png" alt="Level" />
         </span>
         <h3 class="name">${card.name}</h3>
         <span>
