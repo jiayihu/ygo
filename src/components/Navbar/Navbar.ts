@@ -10,7 +10,7 @@ export class Navbar extends HyperHTMLElement {
     return ['route'];
   }
 
-  route: string | null = null;
+  route?: string;
 
   constructor() {
     super();
@@ -22,11 +22,7 @@ export class Navbar extends HyperHTMLElement {
     this.render();
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (name === 'route') this.route = newValue;
-
-    console.log(name, newValue);
-
+  attributeChangedCallback() {
     this.render();
   }
 

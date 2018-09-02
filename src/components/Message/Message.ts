@@ -6,8 +6,8 @@ export class Message extends HyperHTMLElement {
     return ['type', 'message'];
   }
 
-  type: string | null = null;
-  message: string | null = null;
+  type?: string;
+  message?: string;
 
   constructor() {
     super();
@@ -19,10 +19,7 @@ export class Message extends HyperHTMLElement {
     this.render();
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (name === 'type') this.type = newValue;
-    if (name === 'message') this.message = newValue;
-
+  attributeChangedCallback() {
     this.render();
   }
 

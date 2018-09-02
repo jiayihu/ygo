@@ -10,9 +10,9 @@ export class CardPreview extends HyperHTMLElement {
     return ['name', 'cover', 'price'];
   }
 
-  name: string | null = null;
-  cover: string | null = null;
-  price: string | null = null;
+  name?: string;
+  cover?: string;
+  price?: string;
 
   constructor() {
     super();
@@ -24,11 +24,7 @@ export class CardPreview extends HyperHTMLElement {
     this.render();
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (name === 'name') this.name = newValue;
-    if (name === 'cover') this.cover = newValue;
-    if (name === 'price') this.price = newValue;
-
+  attributeChangedCallback() {
     this.render();
   }
 

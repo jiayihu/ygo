@@ -20,7 +20,7 @@ export class CardDetails extends HyperHTMLElement<State> {
     return ['name'];
   }
 
-  name: string | null = null;
+  name?: string;
 
   constructor() {
     super();
