@@ -5,10 +5,18 @@ export default function request(resource: string, options?: RequestInit): Promis
     mode: 'cors',
     ...options
   })
-    .then(response => response.json())
+    .then(response => {
+      if (response.status >= 200 && response.status < 400) {
+        return response.json();
+      }
+
+      return response.json().then(error => {
+        throw error;
+      });
+    })
     .then(response => {
       if (response.status !== 'success') {
-        console.warn(response.error_msg || 'Error with API request');
+        throw response;
       }
 
       return response.data;

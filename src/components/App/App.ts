@@ -3,11 +3,12 @@ import hyperApp from 'hyperhtml-app';
 import { darken } from 'polished';
 
 import style from './App.css';
-import { CardSelectionEvent } from '../ExpensiveCards/ExpensiveCards';
+import { CardSelectionEvent } from '../CardPreview/CardPreview';
 import { YGOCard } from '../../domain/types';
 import { getCard } from '../../services/cards';
 import { getCardColor } from '../../domain/cards';
 import { RouteChangeEvent } from '../Navbar/Navbar';
+import { SearchEvent } from '../SearchInput/SearchInput';
 
 type State = {
   card: YGOCard | null;
@@ -34,22 +35,51 @@ export class App extends HyperHTMLElement<State> {
     this.router.get('/card/:name', ctx => {
       const cardName = ctx.params.name;
 
-      getCard(cardName).then(card => {
-        this.renderRoute`<ygo-card-details name=${ctx.params.name} />`;
-        this.setState({ card });
-      });
+      this.renderRoute`<ygo-spinner />`;
+      this.render();
+
+      getCard(cardName)
+        .then(card => {
+          this.renderRoute`<ygo-card-details name=${ctx.params.name} />`;
+          this.setState({ card });
+        })
+        .catch(error => {
+          const message =
+            error.status && error.status === 'fail'
+              ? `No cards matching this name were found.\nDue to yugiohprices.com API limits, you must provide the exact case-insensitive name of the card.`
+              : `There was an error with the server request. Please open an issue on Github if it persists.`;
+
+          this.renderRoute`<ygo-message type="warning" message=${message} />`;
+          this.render();
+        });
     });
 
     this.router.get('/', () => {
-      this.renderRoute`<ygo-expensive-cards oncardSelection=${this.handleCardSelection} />`;
+      this.renderRoute`
+        <ygo-search-input onsearch=${this.handleCardSearch}></ygo-search-input>
+        <ygo-expensive-cards oncardSelection=${this.handleCardSelection} />
+      `;
       this.setState({ card: null });
     });
   }
 
   connectedCallback() {
     this.configureRoutes();
-    this.router.navigate('/');
+
+    // Trigger route handler for the current path
+    this.router.navigate(window.location.pathname);
   }
+
+  handleCardSearch = (event: SearchEvent): void => {
+    const cardName = event.detail.query;
+
+    if (!cardName) {
+      this.router.navigate('/');
+      return;
+    }
+
+    this.router.navigate(`/card/${cardName}`);
+  };
 
   handleCardSelection = (event: CardSelectionEvent): void => {
     const cardName = event.detail.name;
@@ -60,7 +90,7 @@ export class App extends HyperHTMLElement<State> {
   };
 
   handleRouteChange = (event: RouteChangeEvent): void => {
-    const route: string = event.detail;
+    const route: string = event.detail.route;
     this.router.navigate(route);
     this.render();
   };
@@ -68,11 +98,14 @@ export class App extends HyperHTMLElement<State> {
   render() {
     const { card } = this.state;
     const bgColor = card ? darken(0.2, getCardColor(card)) : 'inherit';
+    const activeRoute = window.location.pathname;
+
+    console.log(activeRoute);
 
     return this.html`
       <style>${style}</style>
 
-      <ygo-navbar onrouteChange=${this.handleRouteChange}></ygo-navbar>
+      <ygo-navbar route=${activeRoute} onrouteChange=${this.handleRouteChange}></ygo-navbar>
 
       <section class="app-section" style=${`background-color: ${bgColor}`}>
         <div class="container">

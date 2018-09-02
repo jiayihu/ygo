@@ -8,6 +8,10 @@ export class Spinner extends HyperHTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
+  connectedCallback() {
+    this.render();
+  }
+
   render() {
     return this.html`
       <style>${style}</style>
