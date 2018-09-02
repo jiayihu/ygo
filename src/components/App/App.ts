@@ -7,6 +7,7 @@ import { CardSelectionEvent } from '../ExpensiveCards/ExpensiveCards';
 import { YGOCard } from '../../domain/types';
 import { getCard } from '../../services/cards';
 import { getCardColor } from '../../domain/cards';
+import { RouteChangeEvent } from '../Navbar/Navbar';
 
 type State = {
   card: YGOCard | null;
@@ -48,7 +49,6 @@ export class App extends HyperHTMLElement<State> {
   connectedCallback() {
     this.configureRoutes();
     this.router.navigate('/');
-    this.render();
   }
 
   handleCardSelection = (event: CardSelectionEvent): void => {
@@ -59,6 +59,12 @@ export class App extends HyperHTMLElement<State> {
     this.router.navigate(`/card/${cardName}`);
   };
 
+  handleRouteChange = (event: RouteChangeEvent): void => {
+    const route: string = event.detail;
+    this.router.navigate(route);
+    this.render();
+  };
+
   render() {
     const { card } = this.state;
     const bgColor = card ? darken(0.2, getCardColor(card)) : 'inherit';
@@ -66,7 +72,7 @@ export class App extends HyperHTMLElement<State> {
     return this.html`
       <style>${style}</style>
 
-      <ygo-navbar></ygo-navbar>
+      <ygo-navbar onrouteChange=${this.handleRouteChange}></ygo-navbar>
 
       <section class="app-section" style=${`background-color: ${bgColor}`}>
         <div class="container">

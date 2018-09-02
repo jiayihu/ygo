@@ -1,93 +1,52 @@
-import template from './CardPreview.html';
+import HyperHTMLElement from 'hyperhtml-element';
 import style from './CardPreview.css';
 
-const templateEl = document.createElement('template');
-templateEl.innerHTML = `
-  <style>${style}</style>
-  ${template}
-`;
-
-enum Attribute {
-  name = 'name',
-  cover = 'cover',
-  price = 'price'
-}
-
-export class CardPreview extends HTMLElement {
+export class CardPreview extends HyperHTMLElement {
   static get observedAttributes() {
     return ['name', 'cover', 'price'];
   }
 
-  private coverEl: HTMLImageElement | null = null;
-  private nameEl: HTMLHeadingElement | null = null;
-  private priceEl: HTMLElement | null = null;
+  name: string | null = null;
+  cover: string | null = null;
+  price: string | null = null;
 
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(templateEl.content.cloneNode(true));
-  }
-
-  get name(): string | null {
-    return this.getAttribute('name');
-  }
-  set name(value: string | null) {
-    value ? this.setAttribute('name', value) : this.removeAttribute('name');
-  }
-
-  get cover(): string | null {
-    return this.getAttribute('cover');
-  }
-  set cover(value: string | null) {
-    if (value) this.setAttribute('cover', value);
-    else throw new Error(`"cover" attribute is required for <ygo-card-preview>`);
-  }
-
-  get price(): string | null {
-    return this.getAttribute('price');
-  }
-  set price(value: string | null) {
-    value ? this.setAttribute('price', value) : this.removeAttribute('price');
+    this.attachShadow({ mode: 'open' });
   }
 
   connectedCallback() {
-    if (!this.shadowRoot) return;
-
-    this.coverEl = this.shadowRoot.querySelector('.cover');
-    this.nameEl = this.shadowRoot.querySelector('.name');
-    this.priceEl = this.shadowRoot.querySelector('.price');
-
-    const name = this.getAttribute('name');
-    const cover = this.getAttribute('cover');
-    const price = this.getAttribute('price');
-
-    if (this.nameEl && name) {
-      this.nameEl.textContent = name;
-    }
-
-    if (this.coverEl && cover) {
-      this.coverEl.src = cover;
-    }
-
-    if (this.priceEl && price) {
-      this.priceEl.textContent = `$${price}`;
-    }
+    this.render();
   }
 
-  attributeChangedCallback(attr: Attribute, _: string, newValue: string) {
-    if (attr === 'name' && this.nameEl) {
-      this.nameEl.textContent = newValue;
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (name === 'name') this.name = newValue;
+    if (name === 'cover') this.cover = newValue;
+    if (name === 'price') this.price = newValue;
+
+    this.render();
+  }
+
+  render() {
+    if (!this.name || !this.cover || !this.price) {
+      return this.html`<div>"name", "cover" and "price" are required.</div>`;
     }
 
-    if (attr === 'cover' && this.coverEl) {
-      this.coverEl.textContent = newValue;
-    }
+    return this.html`
+      <style>${style}</style>
 
-    if (attr === 'price' && this.priceEl) {
-      this.priceEl.textContent = `$${newValue}`;
-    }
+      <div class="card">
+        <div class="details">
+          <img src=${this.cover} class="cover" alt="Cover" />
+          <h3 class="name">${this.name}</h3>
+          <div class="info">
+            <span class="price">$${this.price}</span>
+          </div>
+        </div>
+      </div>
+    `;
   }
 }
 
-customElements.define('ygo-card-preview', CardPreview);
+CardPreview.define('ygo-card-preview');

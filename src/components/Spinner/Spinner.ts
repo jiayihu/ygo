@@ -1,21 +1,22 @@
+import HyperHTMLElement from 'hyperhtml-element';
 import style from './Spinner.css';
 
-const templateEl = document.createElement('template');
-templateEl.innerHTML = `
-  <style>${style}</style>
-  <div class="spinner">
-    <div class="cube1"></div>
-    <div class="cube2"></div>
-  </div>
-`;
-
-export class Spinner extends HTMLElement {
+export class Spinner extends HyperHTMLElement {
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(templateEl.content.cloneNode(true));
+    this.attachShadow({ mode: 'open' });
+  }
+
+  render() {
+    return this.html`
+      <style>${style}</style>
+      <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+      </div>
+    `;
   }
 }
 
-customElements.define('ygo-spinner', Spinner);
+Spinner.define('ygo-spinner');

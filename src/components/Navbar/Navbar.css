@@ -26,6 +26,7 @@
 .navbar-brand .navbar-item {
   align-items: center;
   color: #fff;
+  cursor: pointer;
   display: flex;
   font-weight: 600;
   text-decoration: none;

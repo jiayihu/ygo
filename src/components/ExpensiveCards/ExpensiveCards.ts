@@ -1,71 +1,84 @@
-import template from './ExpensiveCards.html';
+import HyperHTMLElement from 'hyperhtml-element';
 import style from './ExpensiveCards.css';
 import { getMostExpensiveCards } from '../../services/cards';
 import { CardPreview } from '../CardPreview/CardPreview';
 import { getCardImage } from '../../domain/cards';
-
-const templateEl = document.createElement('template');
-templateEl.innerHTML = `
-  <style>${style}</style>
-  ${template}
-`;
+import { YGOCardPreview } from '../../domain/types';
 
 export interface CardSelectionEvent extends CustomEvent {
   detail: CardPreview;
 }
 
-export class ExpensiveCards extends HTMLElement {
+type State = {
+  cards: YGOCardPreview[] | null;
+};
+
+const { wire } = HyperHTMLElement;
+
+export class ExpensiveCards extends HyperHTMLElement<State> {
+  get defaultState(): State {
+    return {
+      cards: null
+    };
+  }
+
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(templateEl.content.cloneNode(true));
+    this.attachShadow({ mode: 'open' });
   }
-
-  private listEl: HTMLUListElement | null = null;
-
-  connectedCallback() {
-    getMostExpensiveCards().then(cards => {
-      if (!this.shadowRoot) return;
-      const cardsTemplate = cards
-        .map(
-          (card, index) => `
-            <ygo-card-preview
-              name="${card.name}" 
-              cover="${getCardImage(card.name)}" 
-              price="${card.price}"
-              class="card"
-              style="--theme: var(--${this.getPositionColor(index)})"
-            >
-            </ygo-card-preview>
-          `
-        )
-        .join('');
-      this.listEl = this.shadowRoot.querySelector('ul') as HTMLUListElement;
-
-      if (this.listEl) {
-        this.listEl.innerHTML = cardsTemplate;
-        this.listEl.addEventListener('click', this.handleCardClick);
-      }
-    });
-  }
-
-  disconnectedCallback() {
-    if (this.listEl) this.listEl.removeEventListener('click', this.handleCardClick);
-  }
-
-  private handleCardClick = (event: MouseEvent) => {
-    const cardEl = event.target as HTMLElement;
-
-    if (cardEl instanceof CardPreview) {
-      const event = new CustomEvent('cardSelection', { detail: cardEl });
-      this.dispatchEvent(event);
-    }
-  };
 
   private getPositionColor(index: number) {
     return index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? 'bronze' : 'primary';
   }
+
+  connectedCallback() {
+    this.render();
+
+    getMostExpensiveCards().then(cards => this.setState({ cards }));
+  }
+
+  handleCardClick = (event: MouseEvent) => {
+    const cardEl = event.target as HTMLElement;
+
+    if (cardEl instanceof CardPreview) {
+      const dispatchedEvent: CardSelectionEvent = new CustomEvent('cardSelection', {
+        detail: cardEl
+      });
+      this.dispatchEvent(dispatchedEvent);
+    }
+  };
+
+  renderCards(cards: YGOCardPreview[]): HTMLElement[] {
+    return cards.map(
+      (card, index) => wire(card)`
+        <ygo-card-preview
+          name=${card.name}
+          cover=${getCardImage(card.name)}
+          price=${card.price}
+          class="card"
+          style=${`--theme: var(--${this.getPositionColor(index)})`}
+        >
+        </ygo-card-preview>
+      `
+    );
+  }
+
+  render() {
+    const { cards } = this.state;
+    const renderContent = wire(cards);
+
+    return this.html`
+      <style>${style}</style>
+
+      <div class="container">
+        <h2 class="title">Most expensive cards</h2>
+        <ul class="cards" onclick=${this.handleCardClick}>
+          ${cards ? renderContent`${this.renderCards(cards)}` : renderContent`<ygo-spinner />`}
+        </ul>
+      </div>
+    `;
+  }
 }
 
-customElements.define('ygo-expensive-cards', ExpensiveCards);
+ExpensiveCards.define('ygo-expensive-cards');
