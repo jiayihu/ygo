@@ -1,6 +1,10 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import style from './CardPreview.css';
 
+export interface CardSelectionEvent extends CustomEvent {
+  detail: { name: string };
+}
+
 export class CardPreview extends HyperHTMLElement {
   static get observedAttributes() {
     return ['name', 'cover', 'price'];
@@ -28,6 +32,14 @@ export class CardPreview extends HyperHTMLElement {
     this.render();
   }
 
+  handleCardClick = () => {
+    const dispatchedEvent: CardSelectionEvent = new CustomEvent('cardSelection', {
+      detail: { name: this.name! },
+      composed: true
+    });
+    this.dispatchEvent(dispatchedEvent);
+  };
+
   render() {
     if (!this.name || !this.cover || !this.price) {
       return this.html`<div>"name", "cover" and "price" are required.</div>`;
@@ -38,8 +50,8 @@ export class CardPreview extends HyperHTMLElement {
 
       <div class="card">
         <div class="details">
-          <img src=${this.cover} class="cover" alt="Cover" />
-          <h3 class="name">${this.name}</h3>
+          <img src=${this.cover} class="cover" alt="Cover" onclick=${this.handleCardClick} />
+          <h3 class="name" onclick=${this.handleCardClick}>${this.name}</h3>
           <div class="info">
             <span class="price">$${this.price}</span>
           </div>

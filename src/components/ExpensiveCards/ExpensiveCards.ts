@@ -1,13 +1,8 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import style from './ExpensiveCards.css';
 import { getMostExpensiveCards } from '../../services/cards';
-import { CardPreview } from '../CardPreview/CardPreview';
 import { getCardImage } from '../../domain/cards';
 import { YGOCardPreview } from '../../domain/types';
-
-export interface CardSelectionEvent extends CustomEvent {
-  detail: CardPreview;
-}
 
 type State = {
   cards: YGOCardPreview[] | null;
@@ -38,17 +33,6 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
     getMostExpensiveCards().then(cards => this.setState({ cards }));
   }
 
-  handleCardClick = (event: MouseEvent) => {
-    const cardEl = event.target as HTMLElement;
-
-    if (cardEl instanceof CardPreview) {
-      const dispatchedEvent: CardSelectionEvent = new CustomEvent('cardSelection', {
-        detail: cardEl
-      });
-      this.dispatchEvent(dispatchedEvent);
-    }
-  };
-
   renderCards(cards: YGOCardPreview[]): HTMLElement[] {
     return cards.map(
       (card, index) => wire(card)`
@@ -73,7 +57,7 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
 
       <div class="container">
         <h2 class="title">Most expensive cards</h2>
-        <ul class="cards" onclick=${this.handleCardClick}>
+        <ul class="cards">
           ${cards ? renderContent`${this.renderCards(cards)}` : renderContent`<ygo-spinner />`}
         </ul>
       </div>
