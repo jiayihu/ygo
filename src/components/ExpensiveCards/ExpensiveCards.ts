@@ -40,6 +40,7 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
           name=${card.name}
           cover=${getCardImage(card.name)}
           price=${card.price}
+          rarity=${card.rarity}
           class="card"
           style=${`--theme: var(--${this.getPositionColor(index)})`}
         >

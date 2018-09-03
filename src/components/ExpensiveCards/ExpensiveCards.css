@@ -18,10 +18,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .card {
-  flex: none;
+  flex-grow: 0;
+  flex-shrink: 0;
+  min-width: 16rem;
   padding: 0.75rem;
   width: 33.3333%;
 }
