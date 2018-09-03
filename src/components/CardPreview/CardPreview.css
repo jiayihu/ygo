@@ -7,8 +7,8 @@
 }
 
 .card {
-  background-color: var(--theme, #9d7150);
-  border: 2px solid var(--theme, #9d7150);
+  background-color: var(--primary, #9d7150);
+  border: 2px solid var(--primary, #9d7150);
   padding: 2rem 0 0;
   margin-top: 8rem;
 }

@@ -17,7 +17,7 @@ export function getCardColor(card: YGOCard): string {
     case YGOCardType.synchro:
       return '#CFD8DC';
     case YGOCardType.trap:
-      return '#EC407A';
+      return '#960c80';
     case YGOCardType.xyz:
       return '#525252';
     default:

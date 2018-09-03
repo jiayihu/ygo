@@ -6,7 +6,7 @@
 }
 
 .navbar {
-  background-color: var(--primary);
+  background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   display: flex;
   min-height: 3.25rem;
@@ -23,7 +23,7 @@
 }
 
 .navbar-brand:hover {
-  background-color: var(--dark);
+  background-color: var(--hover, var(--dark, #67412e));
   color: white;
 }
 

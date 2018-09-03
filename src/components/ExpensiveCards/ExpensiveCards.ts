@@ -42,7 +42,7 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
           price=${card.price}
           rarity=${card.rarity}
           class="card"
-          style=${`--theme: var(--${this.getPositionColor(index)})`}
+          style=${`--primary: var(--${this.getPositionColor(index)})`}
         >
         </ygo-card-preview>
       `

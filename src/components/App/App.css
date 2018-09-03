@@ -10,7 +10,6 @@ a {
 }
 
 .app-section {
-  background-color: var(--dark);
   min-height: calc(100vh - 3.25rem); /* 100vh - navbar height */
   padding: 3rem 1.5rem;
 }
@@ -21,7 +20,6 @@ a {
 }
 
 footer {
-  background-color: var(--darkest);
   font-size: 0.875rem;
   padding: 1rem 1rem 4rem 1rem;
 }
