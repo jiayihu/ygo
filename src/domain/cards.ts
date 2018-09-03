@@ -24,7 +24,7 @@ export function getCardColor(card: YGOCard): string {
 }
 
 export function getCardImage(name: string): string {
-  return `http://yugiohprices.com/api/card_image/${encodeURIComponent(name)}`;
+  return `https://yugiohprices.com/api/card_image/${encodeURIComponent(name)}`;
 }
 
 export function isMonster(card: YGOCard): boolean {

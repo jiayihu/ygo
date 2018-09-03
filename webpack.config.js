@@ -1,6 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const history = require('connect-history-api-fallback');
 const convert = require('koa-connect');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
@@ -21,19 +24,43 @@ function createCache(urlPattern) {
   };
 }
 
+const swConfig = {
+  clientsClaim: true,
+  skipWaiting: true,
+  runtimeCaching: [
+    createCache(/^https?:\/\/yugiohprices\.com\/api\/.+/),
+    createCache(/^https?:\/\/cors-anywhere\.herokuapp\.com\/.+/)
+  ],
+  cacheId: 'ygo'
+};
+const htmlConfig = {
+  template: './index.template.html',
+  filename: './index.html',
+  favicon: 'favicon.ico'
+};
+const envConfig = {
+  'process.env': {
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+  }
+};
+
 const devPlugins = [
+  new HtmlWebpackPlugin(htmlConfig),
   new GenerateSW({
-    clientsClaim: true,
-    skipWaiting: true,
-    include: [], // Do not cache any static asset for the time being
-    runtimeCaching: [
-      createCache(/^https?:\/\/yugiohprices\.com\/api\/.+/),
-      createCache(/^https?:\/\/cors-anywhere\.herokuapp\.com\/.+/)
-    ],
-    cacheId: 'ygo'
-  })
+    ...swConfig,
+    include: [] // Do not precache any static asset in development
+  }),
+  new webpack.DefinePlugin(envConfig)
 ];
-const prodPlugins = [];
+const prodPlugins = [
+  new HtmlWebpackPlugin(htmlConfig),
+  new GenerateSW(swConfig),
+  new CopyWebpackPlugin([
+    { from: './favicon.ico', to: './favicon.ico' },
+    { from: './assets', to: './assets' }
+  ]),
+  new webpack.DefinePlugin(envConfig)
+];
 
 module.exports = {
   mode: IS_DEV ? 'development' : 'production',
@@ -48,8 +75,7 @@ module.exports = {
   devtool: 'eval',
   entry: './src/index.ts',
   output: {
-    /** @TODO: use Webpack HTML plugin */
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname, IS_DEV ? '' : 'public'),
     filename: 'index.js'
   },
   resolve: {
@@ -65,7 +91,8 @@ module.exports = {
       { test: /\.tsx?$/, loader: 'ts-loader' },
       {
         test: /\.html$/,
-        use: 'raw-loader'
+        use: 'raw-loader',
+        include: [path.resolve(__dirname, 'src')]
       }
     ]
   },
