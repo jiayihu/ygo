@@ -11,6 +11,7 @@ export interface YGOCardPreview {
 
 export enum YGOCardType {
   fusion = 'fusion',
+  ritual = 'ritual',
   link = 'link',
   monster = 'monster',
   pendulum = 'pendulum',

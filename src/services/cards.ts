@@ -10,6 +10,7 @@ function getCardType(card: any): YGOCardType {
     const type = card.type;
 
     if (type.includes('Fusion')) return YGOCardType.fusion;
+    if (type.includes('Ritual')) return YGOCardType.ritual;
     if (type.includes('Link')) return YGOCardType.link;
     if (type.includes('Pendulum')) return YGOCardType.pendulum;
     if (type.includes('Synchro')) return YGOCardType.synchro;

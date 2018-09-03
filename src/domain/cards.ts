@@ -4,6 +4,8 @@ export function getCardColor(card: YGOCard): string {
   switch (card.cardType) {
     case YGOCardType.fusion:
       return '#7E57C2';
+    case YGOCardType.ritual:
+      return '#305488';
     case YGOCardType.link:
       return '#42A5F5';
     case YGOCardType.monster:
@@ -33,6 +35,7 @@ export function isMonster(card: YGOCard): boolean {
   return (
     cardType === YGOCardType.monster ||
     cardType === YGOCardType.fusion ||
+    cardType === YGOCardType.ritual ||
     cardType === YGOCardType.link ||
     cardType === YGOCardType.pendulum ||
     cardType === YGOCardType.synchro ||
