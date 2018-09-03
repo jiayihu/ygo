@@ -6,5 +6,6 @@ import './Message/Message';
 import './MonsterCard/MonsterCard';
 import './Navbar/Navbar';
 import './SearchInput/SearchInput';
+import './Select/Select';
 import './SpellTrapCard/SpellTrapCard';
 import './Spinner/Spinner';

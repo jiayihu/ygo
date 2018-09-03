@@ -1,0 +1,422 @@
+@import '_normalize/box-sizing.css';
+@import '_normalize/forms.css';
+
+:host {
+  display: block;
+}
+
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border: 3px solid transparent;
+  border-radius: 2px;
+  border-right: 0;
+  border-top: 0;
+  content: ' ';
+  display: block;
+  height: 0.625em;
+  margin-top: -0.4375em;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  width: 0.625em;
+}
+
+.select.is-loading::after {
+  animation: spinAround 500ms infinite linear;
+  border: 2px solid #dbdbdb;
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: '';
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
+.select select {
+  appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.25em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.375em - 1px);
+  padding-left: calc(0.625em - 1px);
+  padding-right: calc(0.625em - 1px);
+  padding-top: calc(0.375em - 1px);
+  position: relative;
+  vertical-align: top;
+}
+
+.select select:focus,
+.select select.is-focused,
+.select select:active,
+.select select.is-active {
+  outline: none;
+}
+
+.select select[disabled] {
+  cursor: not-allowed;
+}
+
+.select {
+  display: inline-block;
+  max-width: 100%;
+  position: relative;
+  vertical-align: top;
+}
+
+.select:not(.is-multiple) {
+  height: 2.25em;
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: #3273dc;
+  right: 1.125em;
+  z-index: 4;
+}
+
+.select.is-rounded select {
+  border-radius: 290486px;
+  padding-left: 1em;
+}
+
+.select select {
+  background-color: white;
+  border-color: #dbdbdb;
+  color: #363636;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  max-width: 100%;
+  outline: none;
+}
+
+.select select::-moz-placeholder {
+  color: rgba(54, 54, 54, 0.3);
+}
+
+.select select::-webkit-input-placeholder {
+  color: rgba(54, 54, 54, 0.3);
+}
+
+.select select:-moz-placeholder {
+  color: rgba(54, 54, 54, 0.3);
+}
+
+.select select:-ms-input-placeholder {
+  color: rgba(54, 54, 54, 0.3);
+}
+
+.select select:hover,
+.select select.is-hovered {
+  border-color: #b5b5b5;
+}
+
+.select select:focus,
+.select select.is-focused,
+.select select:active,
+.select select.is-active {
+  border-color: #3273dc;
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+}
+
+.select select[disabled] {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  box-shadow: none;
+  color: #7a7a7a;
+}
+
+.select select[disabled]::-moz-placeholder {
+  color: rgba(122, 122, 122, 0.3);
+}
+
+.select select[disabled]::-webkit-input-placeholder {
+  color: rgba(122, 122, 122, 0.3);
+}
+
+.select select[disabled]:-moz-placeholder {
+  color: rgba(122, 122, 122, 0.3);
+}
+
+.select select[disabled]:-ms-input-placeholder {
+  color: rgba(122, 122, 122, 0.3);
+}
+
+.select select::-ms-expand {
+  display: none;
+}
+
+.select select[disabled]:hover {
+  border-color: whitesmoke;
+}
+
+.select select:not([multiple]) {
+  padding-right: 2.5em;
+}
+
+.select select[multiple] {
+  height: initial;
+  padding: 0;
+}
+
+.select select[multiple] option {
+  padding: 0.5em 1em;
+}
+
+.select:not(.is-multiple):not(.is-loading):hover::after {
+  border-color: #363636;
+}
+
+.select.is-white:not(:hover)::after {
+  border-color: white;
+}
+
+.select.is-white select {
+  border-color: white;
+}
+
+.select.is-white select:hover,
+.select.is-white select.is-hovered {
+  border-color: #f2f2f2;
+}
+
+.select.is-white select:focus,
+.select.is-white select.is-focused,
+.select.is-white select:active,
+.select.is-white select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(255, 255, 255, 0.25);
+}
+
+.select.is-black:not(:hover)::after {
+  border-color: #0a0a0a;
+}
+
+.select.is-black select {
+  border-color: #0a0a0a;
+}
+
+.select.is-black select:hover,
+.select.is-black select.is-hovered {
+  border-color: black;
+}
+
+.select.is-black select:focus,
+.select.is-black select.is-focused,
+.select.is-black select:active,
+.select.is-black select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(10, 10, 10, 0.25);
+}
+
+.select.is-light:not(:hover)::after {
+  border-color: whitesmoke;
+}
+
+.select.is-light select {
+  border-color: whitesmoke;
+}
+
+.select.is-light select:hover,
+.select.is-light select.is-hovered {
+  border-color: #e8e8e8;
+}
+
+.select.is-light select:focus,
+.select.is-light select.is-focused,
+.select.is-light select:active,
+.select.is-light select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
+}
+
+.select.is-dark:not(:hover)::after {
+  border-color: #363636;
+}
+
+.select.is-dark select {
+  border-color: #363636;
+}
+
+.select.is-dark select:hover,
+.select.is-dark select.is-hovered {
+  border-color: #292929;
+}
+
+.select.is-dark select:focus,
+.select.is-dark select.is-focused,
+.select.is-dark select:active,
+.select.is-dark select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(54, 54, 54, 0.25);
+}
+
+.select.is-primary:not(:hover)::after {
+  border-color: #00d1b2;
+}
+
+.select.is-primary select {
+  border-color: #00d1b2;
+}
+
+.select.is-primary select:hover,
+.select.is-primary select.is-hovered {
+  border-color: #00b89c;
+}
+
+.select.is-primary select:focus,
+.select.is-primary select.is-focused,
+.select.is-primary select:active,
+.select.is-primary select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+}
+
+.select.is-link:not(:hover)::after {
+  border-color: #3273dc;
+}
+
+.select.is-link select {
+  border-color: #3273dc;
+}
+
+.select.is-link select:hover,
+.select.is-link select.is-hovered {
+  border-color: #2366d1;
+}
+
+.select.is-link select:focus,
+.select.is-link select.is-focused,
+.select.is-link select:active,
+.select.is-link select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+}
+
+.select.is-info:not(:hover)::after {
+  border-color: #209cee;
+}
+
+.select.is-info select {
+  border-color: #209cee;
+}
+
+.select.is-info select:hover,
+.select.is-info select.is-hovered {
+  border-color: #118fe4;
+}
+
+.select.is-info select:focus,
+.select.is-info select.is-focused,
+.select.is-info select:active,
+.select.is-info select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(32, 156, 238, 0.25);
+}
+
+.select.is-success:not(:hover)::after {
+  border-color: #23d160;
+}
+
+.select.is-success select {
+  border-color: #23d160;
+}
+
+.select.is-success select:hover,
+.select.is-success select.is-hovered {
+  border-color: #20bc56;
+}
+
+.select.is-success select:focus,
+.select.is-success select.is-focused,
+.select.is-success select:active,
+.select.is-success select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(35, 209, 96, 0.25);
+}
+
+.select.is-warning:not(:hover)::after {
+  border-color: #ffdd57;
+}
+
+.select.is-warning select {
+  border-color: #ffdd57;
+}
+
+.select.is-warning select:hover,
+.select.is-warning select.is-hovered {
+  border-color: #ffd83d;
+}
+
+.select.is-warning select:focus,
+.select.is-warning select.is-focused,
+.select.is-warning select:active,
+.select.is-warning select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(255, 221, 87, 0.25);
+}
+
+.select.is-danger:not(:hover)::after {
+  border-color: #ff3860;
+}
+
+.select.is-danger select {
+  border-color: #ff3860;
+}
+
+.select.is-danger select:hover,
+.select.is-danger select.is-hovered {
+  border-color: #ff1f4b;
+}
+
+.select.is-danger select:focus,
+.select.is-danger select.is-focused,
+.select.is-danger select:active,
+.select.is-danger select.is-active {
+  box-shadow: 0 0 0 0.125em rgba(255, 56, 96, 0.25);
+}
+
+.select.is-small {
+  border-radius: 2px;
+  font-size: 0.75rem;
+}
+
+.select.is-medium {
+  font-size: 1.25rem;
+}
+
+.select.is-large {
+  font-size: 1.5rem;
+}
+
+.select.is-disabled::after {
+  border-color: #7a7a7a;
+}
+
+.select.is-fullwidth {
+  width: 100%;
+}
+
+.select.is-fullwidth select {
+  width: 100%;
+}
+
+.select.is-loading.is-small:after {
+  font-size: 0.75rem;
+}
+
+.select.is-loading.is-medium:after {
+  font-size: 1.25rem;
+}
+
+.select.is-loading.is-large:after {
+  font-size: 1.5rem;
+}
