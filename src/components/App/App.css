@@ -1,6 +1,10 @@
 @import '_normalize/text-level';
 @import '_normalize/box-sizing.css';
 
+:host {
+  display: block;
+}
+
 a {
   color: white;
 }
@@ -20,6 +24,10 @@ footer {
   background-color: var(--darkest);
   font-size: 0.875rem;
   padding: 1rem 1rem 4rem 1rem;
+}
+
+ygo-search-input {
+  margin-bottom: 2rem;
 }
 
 @media screen and (min-width: 1088px) {

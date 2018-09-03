@@ -1,5 +1,9 @@
 @import '_normalize/box-sizing.css';
 
+:host {
+  display: block;
+}
+
 .message {
   background-color: whitesmoke;
   border-radius: 4px;

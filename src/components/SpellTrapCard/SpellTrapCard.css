@@ -2,6 +2,10 @@
 @import '_normalize/sections.css';
 @import '_normalize/embedded.css';
 
+:host {
+  display: block;
+}
+
 .heading {
   display: flex;
   flex-direction: column;

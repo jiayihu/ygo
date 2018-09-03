@@ -1,6 +1,10 @@
 @import '_normalize/box-sizing.css';
 @import '_normalize/text-level.css';
 
+:host {
+  display: block;
+}
+
 .navbar {
   background-color: var(--primary);
   color: #fff;

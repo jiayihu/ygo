@@ -1,6 +1,10 @@
 @import '_normalize/box-sizing.css';
 @import '_normalize/sections.css';
 
+:host {
+  display: block;
+}
+
 .container {
   text-align: center;
 }
@@ -8,7 +12,6 @@
 .title {
   font-size: 1.75rem;
   font-weight: normal;
-  margin-top: 2rem;
 }
 
 .cards {

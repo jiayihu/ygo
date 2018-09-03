@@ -2,6 +2,10 @@
 @import '_normalize/sections.css';
 @import '_normalize/embedded.css';
 
+:host {
+  display: block;
+}
+
 .card {
   background-color: var(--theme, #9d7150);
   padding: 3rem 1rem 1rem;

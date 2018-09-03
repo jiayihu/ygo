@@ -1,6 +1,10 @@
 @import '_normalize/box-sizing.css';
 @import '_normalize/forms.css';
 
+:host {
+  display: block;
+}
+
 input {
   appearance: none;
   align-items: center;
