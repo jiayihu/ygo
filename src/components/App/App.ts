@@ -31,16 +31,28 @@ export class App extends HyperHTMLElement<State> {
     this.attachShadow({ mode: 'open' });
   }
 
+  private resetScroll() {
+    window.scrollTo(0, 0);
+  }
+
+  private renderError(message: string) {
+    return this.renderRoute`
+      <ygo-search-input onsearch=${this.handleCardSearch}></ygo-search-input>
+      <ygo-message type="warning" message=${message} />
+    `;
+  }
+
   private configureRoutes() {
     this.router.get('/card/:name', ctx => {
       const cardName = ctx.params.name;
 
       this.renderRoute`<ygo-spinner />`;
       this.render();
+      this.resetScroll();
 
       getCard(cardName)
         .then(card => {
-          this.renderRoute`<ygo-card-details name=${ctx.params.name} />`;
+          this.renderRoute`<ygo-card-details name=${cardName} />`;
           this.setState({ card });
         })
         .catch(error => {
@@ -49,17 +61,18 @@ export class App extends HyperHTMLElement<State> {
               ? `No cards matching this name were found.\nDue to yugiohprices.com API limits, you must provide the exact case-insensitive name of the card.`
               : `There was an error with the server request. Please open an issue on Github if it persists.`;
 
-          this.renderRoute`<ygo-message type="warning" message=${message} />`;
+          this.renderError(message);
           this.render();
         });
     });
 
     this.router.get('/', () => {
       this.renderRoute`
-        <ygo-search-input onsearch=${this.handleCardSearch}></ygo-search-input>
-        <ygo-expensive-cards oncardSelection=${this.handleCardSelection} />
+      <ygo-search-input onsearch=${this.handleCardSearch}></ygo-search-input>
+      <ygo-expensive-cards oncardSelection=${this.handleCardSelection} />
       `;
       this.setState({ card: null });
+      this.resetScroll();
     });
   }
 
@@ -99,8 +112,6 @@ export class App extends HyperHTMLElement<State> {
     const { card } = this.state;
     const bgColor = card ? darken(0.2, getCardColor(card)) : 'inherit';
     const activeRoute = window.location.pathname;
-
-    console.log(activeRoute);
 
     return this.html`
       <style>${style}</style>
