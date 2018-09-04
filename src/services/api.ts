@@ -1,4 +1,4 @@
-const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://yugiohprices.com/api';
+export const BASE_URL = 'https://ygo-api.now.sh/https://yugiohprices.com/api';
 
 export default function request(resource: string, options?: RequestInit): Promise<any> {
   return fetch(`${BASE_URL}/${resource}`, {

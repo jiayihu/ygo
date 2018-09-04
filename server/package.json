@@ -1,0 +1,25 @@
+{
+  "name": "ygo-api",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "now && now alias && now remove ygo-api --safe"
+  },
+  "now": {
+    "name": "ygo-api",
+    "alias": "ygo-api",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "author": "Jiayi Hu <jiayi.ghu@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "now": "^11.4.1"
+  },
+  "dependencies": {
+    "cors-anywhere": "^0.4.1"
+  }
+}

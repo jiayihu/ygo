@@ -29,7 +29,7 @@ const swConfig = {
   skipWaiting: true,
   runtimeCaching: [
     createCache(/^https?:\/\/yugiohprices\.com\/api\/.+/),
-    createCache(/^https?:\/\/cors-anywhere\.herokuapp\.com\/.+/)
+    createCache(/^https?:\/\/ygo-api\.now\.sh\/.+/)
   ],
   cacheId: 'ygo'
 };
