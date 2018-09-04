@@ -79,7 +79,7 @@ export function getCardHistory(printTag: string, rarity: string): Promise<Price[
   });
 }
 
-export function getMostExpensiveCards(number = 20): Promise<YGOCardPreview[]> {
+export function getMostExpensiveCards(number = 23): Promise<YGOCardPreview[]> {
   return request(`top_100_cards`).then((response: any[]) => {
     return response.slice(0, number);
   });

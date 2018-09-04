@@ -1,5 +1,5 @@
 import HyperHTMLElement from 'hyperhtml-element';
-import hyperApp from 'hyperhtml-app';
+import hyperApp, { Ctx } from 'hyperhtml-app';
 import { darken } from 'polished';
 
 import style from './App.css';
@@ -42,38 +42,41 @@ export class App extends HyperHTMLElement<State> {
     `;
   }
 
-  private configureRoutes() {
-    this.router.get('/card/:name', ctx => {
-      const cardName = ctx.params.name;
+  private handleCardRoute = (ctx: Ctx) => {
+    const cardName = ctx.params.name;
 
-      this.renderRoute`<ygo-spinner />`;
-      this.render();
-      this.resetScroll();
+    this.renderRoute`<ygo-spinner />`;
+    this.render();
+    this.resetScroll();
 
-      getCard(cardName)
-        .then(card => {
-          this.renderRoute`<ygo-card-details name=${cardName} />`;
-          this.setState({ card });
-        })
-        .catch(error => {
-          const message =
-            error.status && error.status === 'fail'
-              ? `No cards matching this name were found.\nDue to yugiohprices.com API limits, you must provide the exact case-insensitive name of the card.`
-              : `There was an error with the server request. Please open an issue on Github if it persists.`;
+    getCard(cardName)
+      .then(card => {
+        this.renderRoute`<ygo-card-details name=${cardName} />`;
+        this.setState({ card });
+      })
+      .catch(error => {
+        const message =
+          error.status && error.status === 'fail'
+            ? `No cards matching this name were found.\nDue to yugiohprices.com API limits, you must provide the exact case-insensitive name of the card.`
+            : `There was an error with the server request. Please open an issue on Github if it persists.`;
 
-          this.renderError(message);
-          this.render();
-        });
-    });
+        this.renderError(message);
+        this.render();
+      });
+  };
 
-    this.router.get('/', () => {
-      this.renderRoute`
+  private handleHomeRoute = () => {
+    this.renderRoute`
       <ygo-search-input onsearch=${this.handleCardSearch}></ygo-search-input>
       <ygo-expensive-cards oncardSelection=${this.handleCardSelection} />
-      `;
-      this.setState({ card: null });
-      this.resetScroll();
-    });
+    `;
+    this.setState({ card: null });
+    this.resetScroll();
+  };
+
+  private configureRoutes() {
+    this.router.get('/card/:name', this.handleCardRoute);
+    this.router.get('/', this.handleHomeRoute);
   }
 
   private getCurrentRoute(): string {

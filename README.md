@@ -17,7 +17,9 @@ The project uses the following technologies:
 
 ## Browser support
 
-Only Chrome 67+ with native Custom Elements is supported for the time being. Polyfills for Custom Elements and Shadow DOM will be provided in future.
+Only Chrome 67+ and Safari 11.1 with native Web Components (Custom Elements & Shadow DOM) are fully supported for the time being, although a polyfill is included. [Check current browser support](https://caniuse.com/#feat=custom-elementsv1).
+
+Also the browser must support ES6, since the bundle is not compiled into ES5. Custom Elements require an extra shim to work with ES5 and it's just not worth it for this project.
 
 Other polyfills like CSS custom properties are not in the interest of this side-project.
 

@@ -11,5 +11,7 @@ declare module 'hyperhtml-app' {
 
   const hyperHTMLApp: { new (): HyperHTMLApplication };
 
+  export { Ctx, HyperHTMLApplication };
+
   export default hyperHTMLApp;
 }

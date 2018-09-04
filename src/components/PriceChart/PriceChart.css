@@ -33,7 +33,6 @@ canvas {
 
 .field ygo-select {
   flex-grow: 5;
-  margin-top: 1rem;
   max-width: 100%;
 }
 
@@ -44,6 +43,7 @@ canvas {
 }
 
 .current .info {
+  align-items: center;
   display: flex;
   flex-direction: column;
   line-height: 1.25;
@@ -55,6 +55,7 @@ canvas {
 
 .info span:nth-child(2) {
   color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+  margin-top: 1rem;
   text-transform: uppercase;
 }
 

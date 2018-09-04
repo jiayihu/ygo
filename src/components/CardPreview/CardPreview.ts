@@ -32,6 +32,7 @@ export class CardPreview extends HyperHTMLElement {
   handleCardClick = () => {
     const dispatchedEvent: CardSelectionEvent = new CustomEvent('cardSelection', {
       detail: { name: this.name! },
+      bubbles: true,
       composed: true
     });
     this.dispatchEvent(dispatchedEvent);
@@ -47,11 +48,15 @@ export class CardPreview extends HyperHTMLElement {
     return this.html`
       <style>${style}</style>
 
-      <div class="card">
+      <div class="preview">
         <div class="details">
-          <img src=${this.cover} class="cover" alt="Cover" crossorigin="anonymous" onclick=${
-      this.handleCardClick
-    } />
+          <img
+            src=${this.cover}
+            class="cover"
+            alt="Cover"
+            crossorigin="anonymous"
+            onclick=${this.handleCardClick}
+          />
           <h3 class="name" style=${`font-size: ${nameSize}`} onclick=${this.handleCardClick}>
             ${this.name}
           </h3>

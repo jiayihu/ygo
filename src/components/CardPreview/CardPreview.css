@@ -6,7 +6,7 @@
   display: block;
 }
 
-.card {
+.preview {
   background-color: var(--primary, #9d7150);
   border: 2px solid var(--primary, #9d7150);
   padding: 2rem 0 0;
