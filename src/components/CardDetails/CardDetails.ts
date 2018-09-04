@@ -63,6 +63,7 @@ export class CardDetails extends HyperHTMLElement<State> {
               alt="Cover"
               width="256"
               height="375"
+              crossorigin="anonymous"
               style=${`background-color: ${coverColor}`}
             />
           </div>

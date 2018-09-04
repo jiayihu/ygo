@@ -49,7 +49,9 @@ export class CardPreview extends HyperHTMLElement {
 
       <div class="card">
         <div class="details">
-          <img src=${this.cover} class="cover" alt="Cover" onclick=${this.handleCardClick} />
+          <img src=${this.cover} class="cover" alt="Cover" crossorigin="anonymous" onclick=${
+      this.handleCardClick
+    } />
           <h3 class="name" style=${`font-size: ${nameSize}`} onclick=${this.handleCardClick}>
             ${this.name}
           </h3>

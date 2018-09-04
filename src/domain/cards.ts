@@ -1,4 +1,5 @@
 import { YGOCard, YGOCardType } from './types';
+import { BASE_URL } from '../services/api';
 
 export function getCardColor(card: YGOCard): string {
   switch (card.cardType) {
@@ -26,7 +27,11 @@ export function getCardColor(card: YGOCard): string {
 }
 
 export function getCardImage(name: string): string {
-  return `https://yugiohprices.com/api/card_image/${encodeURIComponent(name)}`;
+  /**
+   * Use CORS also for images to avoid Opaque Responses
+   * @see {@link https://stackoverflow.com/questions/39109789/what-limitations-apply-to-opaque-responses}
+   */
+  return `${BASE_URL}/card_image/${encodeURIComponent(name)}`;
 }
 
 export function isMonster(card: YGOCard): boolean {
