@@ -16,5 +16,45 @@ canvas {
 
 .title {
   font-size: 1.5rem;
-  margin: 3rem 0 1rem;
+  margin: 3rem 0 2rem;
+}
+
+.field {
+  align-items: center;
+  display: flex;
+}
+
+.field label {
+  flex-grow: 1;
+  text-transform: uppercase;
+}
+
+.field ygo-select {
+  flex-grow: 5;
+}
+
+.current {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.current .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info span:first-child {
+  font-size: 1.25rem;
+}
+
+.info span:nth-child(2) {
+  color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+  text-transform: uppercase;
+}
+
+.timestamp {
+  color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+  font-size: 0.875rem;
+  text-align: center;
 }

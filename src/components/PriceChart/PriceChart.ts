@@ -172,20 +172,34 @@ export class PriceChart extends HyperHTMLElement<State> {
       <!-- Wrap the canvas in HTMLElement to allow ChartJS getting the size -->
       <h3 class="title">Price history</h3>
 
+
       ${wire(this.state.options)`
+        <div class="field">
+        <label>Deck set</label>
         <ygo-select
           loading=${this.state.isLoadingHistory}
           data=${this.state.options}
+          selected=${this.state.selected.printTag}
           onchoice=${this.handleChoice}
-        />
-      `}
+          />
+        </div>
+        `}
 
-      <p>Current: $${this.state.selected.price.low}</p>
-      <p>Rarity: ${this.state.selected.rarity}</p>
-      <p>Updated at: ${updatedAt}</p>
+      <div class="current">
+        <span class="info">
+          <span>$${this.state.selected.price.low}</span>
+          <span>Current</span>
+        </span>
+        <span class="info">
+          <span>${this.state.selected.rarity}</span>
+          <span>Rarity</span>
+        </span>
+      </div>
 
       <div>${this.canvasEl}</div>
       <ygo-spinner hidden=${!!this.state.history} />
+
+      <p class="timestamp">Updated at: <time>${updatedAt}</time></p>
     `;
   }
 }

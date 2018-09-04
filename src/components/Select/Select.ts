@@ -13,12 +13,17 @@ export interface ChoiceEvent extends CustomEvent {
 const { wire } = HyperHTMLElement;
 
 export class Select extends HyperHTMLElement {
+  static get observedAttributes() {
+    return ['selected'];
+  }
+
   static get booleanAttributes() {
     return ['loading'];
   }
 
   loading?: boolean;
   data?: Option[];
+  selected?: string;
 
   constructor() {
     super();
@@ -48,7 +53,12 @@ export class Select extends HyperHTMLElement {
   render() {
     const options = this.data
       ? this.data.map(
-          option => wire(option)`<option value=${option.value}>${option.label}</option>`
+          option =>
+            wire(option)`
+              <option
+                value=${option.value}
+                selected=${option.value === this.selected}
+              >${option.label}</option>`
         )
       : null;
 
