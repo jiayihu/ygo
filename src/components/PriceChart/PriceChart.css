@@ -22,15 +22,19 @@ canvas {
 .field {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .field label {
   flex-grow: 1;
+  min-width: 6rem;
   text-transform: uppercase;
 }
 
 .field ygo-select {
   flex-grow: 5;
+  margin-top: 1rem;
+  max-width: 100%;
 }
 
 .current {

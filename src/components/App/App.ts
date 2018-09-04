@@ -76,11 +76,15 @@ export class App extends HyperHTMLElement<State> {
     });
   }
 
+  private getCurrentRoute(): string {
+    return window.location.pathname.replace('index.html', '');
+  }
+
   connectedCallback() {
     this.configureRoutes();
 
     // Trigger route handler for the current path
-    this.router.navigate(window.location.pathname);
+    this.router.navigate(this.getCurrentRoute());
   }
 
   handleCardSearch = (event: SearchEvent): void => {
@@ -111,7 +115,7 @@ export class App extends HyperHTMLElement<State> {
   render() {
     const { card } = this.state;
     const bgColor = card ? darken(0.1, getCardColor(card)) : '#67412e';
-    const activeRoute = window.location.pathname;
+    const activeRoute = this.getCurrentRoute();
 
     return this.html`
       <style>${style}</style>
