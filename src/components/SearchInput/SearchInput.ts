@@ -31,7 +31,12 @@ export class SearchInput extends HyperHTMLElement {
     return this.html`
       <style>${style}</style>
 
-      <input class="input" placeholder="Search by card name" onkeydown=${this.handleInput} />
+      <input
+        class="input"
+        placeholder="Search by card name"
+        aria-label="Search by card name"
+        onkeydown=${this.handleInput}
+      />
     `;
   }
 }

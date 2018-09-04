@@ -58,9 +58,9 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
 
       <div class="container">
         <h2 class="title">Most expensive cards</h2>
-        <ul class="cards">
+        <div class="cards">
           ${cards ? renderContent`${this.renderCards(cards)}` : renderContent`<ygo-spinner />`}
-        </ul>
+        </div>
       </div>
     `;
   }
