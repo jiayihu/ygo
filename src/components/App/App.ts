@@ -57,7 +57,7 @@ export class App extends HyperHTMLElement<State> {
       .catch(error => {
         const message =
           error.status && error.status === 'fail'
-            ? `No cards matching this name were found.\nDue to yugiohprices.com API limits, you must provide the exact case-insensitive name of the card.`
+            ? `No cards matching this name were found.`
             : `There was an error with the server request. Please open an issue on Github if it persists.`;
 
         this.renderError(message);

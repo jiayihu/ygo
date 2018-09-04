@@ -45,6 +45,7 @@
     "workbox-webpack-plugin": "^3.4.1"
   },
   "dependencies": {
+    "awesomplete": "^1.1.2",
     "chart.js": "^2.7.2",
     "hyperhtml": "^2.13.0",
     "hyperhtml-app": "^0.2.3",

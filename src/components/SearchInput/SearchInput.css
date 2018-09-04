@@ -5,6 +5,15 @@
   display: block;
 }
 
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 input {
   appearance: none;
   align-items: center;
@@ -40,4 +49,60 @@ input {
 .input[disabled] {
   box-shadow: none;
   color: #7a7a7a;
+}
+
+.control.is-loading::after {
+  animation: spinAround 0.5s infinite linear;
+  border: 2px solid #dbdbdb;
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: '';
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
+.control.is-loading::after {
+  position: absolute !important;
+  right: 0.625em;
+  top: 0.625em;
+  z-index: 4;
+}
+
+.awesomplete {
+  display: block;
+}
+
+.awesomplete > ul {
+  background: var(--dark);
+  color: white;
+}
+
+.awesomplete > ul:before {
+  background: var(--dark);
+}
+
+.awesomplete > ul > li:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.awesomplete > ul > li[aria-selected='true'] {
+  background: var(--primary);
+}
+
+.awesomplete mark {
+  background: var(--gold);
+  color: var(--darkest);
+}
+
+.awesomplete li:hover mark {
+  background: var(--gold);
+}
+
+.awesomplete li[aria-selected='true'] mark {
+  background: var(--darkest);
+  color: inherit;
 }

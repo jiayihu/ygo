@@ -1,4 +1,4 @@
-import request from './api';
+import request, { BASE_URL } from './api';
 import { YGOCard, YGOCardType, YGOCardPreview, YGOCardPrice, Price } from '../domain/types';
 import { omit } from '../utils';
 
@@ -76,6 +76,26 @@ export function getCardHistory(printTag: string, rarity: string): Promise<Price[
       })
       .slice(0, 30) // Only last month
       .reverse();
+  });
+}
+
+export function searchCard(cardName: string): Promise<string[]> {
+  const encodedName = encodeURIComponent(cardName);
+  const base = BASE_URL.replace('/api', '');
+
+  /**
+   * Autocomplete API is an exception with different URL and response
+   */
+  return fetch(`${base}/autocomplete_names?term=${encodedName}`, {
+    mode: 'cors'
+  }).then(response => {
+    if (response.status >= 200 && response.status < 400) {
+      return response.json();
+    }
+
+    return response.json().then(error => {
+      throw error;
+    });
   });
 }
 
