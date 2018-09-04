@@ -34,7 +34,7 @@ input {
 }
 
 .input {
-  background-color: var(--darkest);
+  background-color: var(--darkest, #4e342e);
   color: whitesmoke;
   display: block;
   max-width: 100%;
@@ -42,7 +42,7 @@ input {
 }
 
 .input:focus {
-  box-shadow: 0 0 0 0.125em var(--primary);
+  box-shadow: 0 0 0 0.125em var(--primary, #9d7150);
   outline: none;
 }
 
@@ -51,7 +51,7 @@ input {
   color: #7a7a7a;
 }
 
-.control.is-loading::after {
+.control.is-loading .spinner {
   animation: spinAround 0.5s infinite linear;
   border: 2px solid #dbdbdb;
   border-radius: 290486px;
@@ -64,7 +64,7 @@ input {
   width: 1em;
 }
 
-.control.is-loading::after {
+.control.is-loading .spinner {
   position: absolute !important;
   right: 0.625em;
   top: 0.625em;
@@ -76,33 +76,33 @@ input {
 }
 
 .awesomplete > ul {
-  background: var(--dark);
+  background: var(--dark, #67412e);
   color: white;
 }
 
 .awesomplete > ul:before {
-  background: var(--dark);
+  background: var(--dark, #67412e);
 }
 
 .awesomplete > ul > li:hover {
-  background: var(--primary);
+  background: var(--primary, #9d7150);
   color: white;
 }
 
 .awesomplete > ul > li[aria-selected='true'] {
-  background: var(--primary);
+  background: var(--primary, #9d7150);
 }
 
 .awesomplete mark {
-  background: var(--gold);
-  color: var(--darkest);
+  background: var(--gold, #fbc02d);
+  color: var(--darkest, #4e342e);
 }
 
 .awesomplete li:hover mark {
-  background: var(--gold);
+  background: var(--gold, #fbc02d);
 }
 
 .awesomplete li[aria-selected='true'] mark {
-  background: var(--darkest);
+  background: var(--darkest, #4e342e);
   color: inherit;
 }

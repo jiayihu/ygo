@@ -78,6 +78,7 @@ export class SearchInput extends HyperHTMLElement<State> {
 
       <div class=${`control ${this.state.isLoading ? 'is-loading' : ''}`}>
         ${this.inputEl}
+        ${this.state.isLoading ? wire()`<span class="spinner" />` : null}
       </div>
     `;
   }
