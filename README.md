@@ -1,5 +1,11 @@
 # YuGiOh!
 
+<p align="center">
+  <a href="https://github.com/jiayihu/ygo">
+    <img alt="YuGiOh" src="./logo.png">
+  </a>
+</p>
+
 A YuGiOh! Progressive Web Application built with Custom Elements and [HyperHTML](https://github.com/WebReflection/hyperHTML).
 
 The project uses the following technologies:
