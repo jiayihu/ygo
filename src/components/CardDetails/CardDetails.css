@@ -6,9 +6,9 @@
 }
 
 .card {
-  background-color: white;
   margin: 0 auto;
   max-width: 40rem;
+  padding: 1rem;
   padding-bottom: 3rem;
 }
 
@@ -20,7 +20,7 @@
 
 .cover {
   border-radius: 5px; /* some covers has white corners */
-  margin: 1rem;
+  margin-right: 1rem;
   max-width: none;
   height: 24rem;
   width: 16rem;
@@ -31,8 +31,14 @@
   text-align: center;
 }
 
+.chart {
+  margin-top: 2rem;
+  max-width: 40rem;
+  width: 100%;
+}
+
 @media (min-width: 768px) {
-  .card {
+  .header {
     display: flex;
   }
 }

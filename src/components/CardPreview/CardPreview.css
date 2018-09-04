@@ -25,6 +25,7 @@
 }
 
 .details img {
+  background-color: var(--primary, #9d7150);
   cursor: pointer;
   left: 50%;
   position: absolute;
@@ -41,7 +42,6 @@
 .details h3 {
   cursor: pointer;
   font-size: 1rem;
-  font-weight: normal;
   line-height: 1;
   width: 80%;
 }

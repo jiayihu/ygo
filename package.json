@@ -14,6 +14,7 @@
   "author": "Jiayi Hu <jiayi.ghu@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/chart.js": "^2.7.31",
     "@types/node": "^10.5.1",
     "@types/webpack": "^4.4.11",
     "autoprefixer": "^8.6.4",
@@ -39,6 +40,7 @@
     "workbox-webpack-plugin": "^3.4.1"
   },
   "dependencies": {
+    "chart.js": "^2.7.2",
     "hyperhtml": "^2.13.0",
     "hyperhtml-app": "^0.2.3",
     "hyperhtml-element": "^2.3.1",

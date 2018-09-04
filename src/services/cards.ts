@@ -1,5 +1,5 @@
 import request from './api';
-import { YGOCard, YGOCardType, YGOCardPreview } from '../domain/types';
+import { YGOCard, YGOCardType, YGOCardPreview, YGOCardPrice, Price } from '../domain/types';
 import { omit } from '../utils';
 
 /**
@@ -28,7 +28,7 @@ function getCardType(card: any): YGOCardType {
 export function getCard(name: string): Promise<YGOCard> {
   const encodedName = encodeURIComponent(name);
 
-  return request(`card_data/${encodedName}`).then(card => {
+  return request(`card_data/${encodedName}`).then((card: any) => {
     const cardType: string = getCardType(card);
 
     return {
@@ -39,7 +39,47 @@ export function getCard(name: string): Promise<YGOCard> {
   });
 }
 
-export function getMostExpensiveCards(number = 10): Promise<YGOCardPreview[]> {
+export function getCardPrices(name: string): Promise<YGOCardPrice[]> {
+  const encodedName = encodeURIComponent(name);
+
+  return request(`get_card_prices/${encodedName}`).then((cards: any[]) => {
+    return cards
+      .map((card: any) => {
+        return {
+          ...omit(card, ['print_tag', 'price_data']),
+          printTag: card.print_tag,
+          price: card.price_data.data
+            ? {
+                ...omit(card.price_data.data.prices, ['updated_at']),
+                updatedAt: card.price_data.data.prices.updated_at
+              }
+            : null
+        } as YGOCardPrice;
+      })
+      .filter(x => x.price);
+  });
+}
+
+export function getCardHistory(printTag: string, rarity: string): Promise<Price[]> {
+  const encodedTag = encodeURIComponent(printTag);
+  const encodedRarity = encodeURIComponent(rarity);
+
+  return request(`price_history/${encodedTag}?rarity=${encodedRarity}`).then((prices: any[]) => {
+    return prices
+      .map((price: any) => {
+        return {
+          high: price.price_high,
+          low: price.price_low,
+          average: price.price_average,
+          updatedAt: price.created_at
+        } as Price;
+      })
+      .slice(0, 30) // Only last month
+      .reverse();
+  });
+}
+
+export function getMostExpensiveCards(number = 20): Promise<YGOCardPreview[]> {
   return request(`top_100_cards`).then((response: any[]) => {
     return response.slice(0, number);
   });

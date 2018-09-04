@@ -5,6 +5,7 @@ import './ExpensiveCards/ExpensiveCards';
 import './Message/Message';
 import './MonsterCard/MonsterCard';
 import './Navbar/Navbar';
+import './PriceChart/PriceChart';
 import './SearchInput/SearchInput';
 import './Select/Select';
 import './SpellTrapCard/SpellTrapCard';

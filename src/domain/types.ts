@@ -49,3 +49,17 @@ export interface YGOCard {
   level: number;
   property: string;
 }
+
+export interface Price {
+  high: number;
+  low: number;
+  average: number;
+  updatedAt: string;
+}
+
+export interface YGOCardPrice {
+  name: string;
+  printTag: string;
+  rarity: string;
+  price: Price;
+}

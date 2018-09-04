@@ -36,9 +36,9 @@ export class CardDetails extends HyperHTMLElement<State> {
     if (name) getCard(name).then(card => this.setState({ card }));
   }
 
-  attributeChangedCallback(attr: string, oldValue: string, newValue: string) {
-    if (attr === 'name' && newValue) {
-      getCard(newValue).then(card => this.setState({ card }));
+  attributeChangedCallback(attr: string, prev: string, curr: string) {
+    if (attr === 'name' && curr) {
+      getCard(curr).then(card => this.setState({ card }));
     }
   }
 
@@ -48,30 +48,33 @@ export class CardDetails extends HyperHTMLElement<State> {
     if (!card) return null;
 
     const cardColor = getCardColor(card);
-    const coverColor = darken(0.2, cardColor);
+    const coverColor = darken(0.1, cardColor);
     const renderCard = wire(card);
 
     return this.html`
       <style>${style}</style>
 
       <div class="card" style=${`background-color: ${cardColor}`}>
-        <div class="cover-wrapper">
-          <img 
-            src=${getCardImage(card.name)}
-            class="cover"
-            alt="Cover"
-            width="256"
-            height="375"
-            style=${`background-color: ${coverColor}`}
-          />
+        <div class="header">
+          <div class="cover-wrapper">
+            <img 
+              src=${getCardImage(card.name)}
+              class="cover"
+              alt="Cover"
+              width="256"
+              height="375"
+              style=${`background-color: ${coverColor}`}
+            />
+          </div>
+          <div class="details">
+            ${
+              isMonster(card)
+                ? renderCard`<ygo-monster-card data=${card} />`
+                : renderCard`<ygo-spelltrap-card data=${card} />`
+            }
+          </div>
         </div>
-        <div class="details">
-          ${
-            isMonster(card)
-              ? renderCard`<ygo-monster-card data=${card} />`
-              : renderCard`<ygo-spelltrap-card data=${card} />`
-          }
-        </div>
+        <ygo-price-chart class="chart" name=${this.name} />
       </div>
     `;
   }
