@@ -6,13 +6,18 @@ export type Option = {
   label: string;
 };
 
-export interface SelectEvent extends CustomEvent {
+export interface ChoiceEvent extends CustomEvent {
   detail: Option;
 }
 
 const { wire } = HyperHTMLElement;
 
 export class Select extends HyperHTMLElement {
+  static get booleanAttributes() {
+    return ['loading'];
+  }
+
+  loading?: boolean;
   data?: Option[];
 
   constructor() {
@@ -30,7 +35,14 @@ export class Select extends HyperHTMLElement {
   }
 
   handleChange = (event: Event) => {
-    console.log((event.target! as HTMLSelectElement).value);
+    const target = event.target! as HTMLSelectElement;
+    const value = target.value;
+    const label = target.textContent!;
+
+    const dispatchedEvent: ChoiceEvent = new CustomEvent('choice', {
+      detail: { value, label }
+    });
+    this.dispatchEvent(dispatchedEvent);
   };
 
   render() {
@@ -43,7 +55,7 @@ export class Select extends HyperHTMLElement {
     return this.html`
       <style>${style}</style>
 
-      <div class="select">
+      <div class=${`select is-white ${this.loading ? 'is-loading' : ''}`}>
         <select onchange=${this.handleChange}>${options}</select>
       </div>
     `;
