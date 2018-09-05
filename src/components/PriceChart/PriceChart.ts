@@ -157,6 +157,7 @@ export class PriceChart extends HyperHTMLElement<State> {
 
     if (!cardPrice) return;
 
+    this.setState({ selected: cardPrice });
     this.updateHistory(printTag, cardPrice.rarity);
   };
 
@@ -165,7 +166,8 @@ export class PriceChart extends HyperHTMLElement<State> {
       return this.html`<ygo-spinner />`;
     }
 
-    const updatedAt = new Date(this.state.selected.price.updatedAt).toLocaleString();
+    const date = this.state.selected.price.updatedAt.match(/\d{4}-\d{2}-\d{2}/)![0];
+    const updatedAt = new Date(date).toLocaleDateString();
 
     return this.html`
       <style>${style}</style>
