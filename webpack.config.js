@@ -48,7 +48,8 @@ const devPlugins = [
   new HtmlWebpackPlugin(htmlConfig),
   new GenerateSW({
     ...swConfig,
-    include: [] // Do not precache any static asset in development
+    include: [], // Do not precache any static asset in development,
+    importScripts: ['sw-dev.js']
   }),
   new webpack.DefinePlugin(envConfig)
 ];
