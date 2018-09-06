@@ -4,6 +4,9 @@
 :host {
   contain: content;
   display: block;
+  position: sticky;
+  top: 0;
+  z-index: 30;
 }
 
 .navbar {
@@ -11,8 +14,6 @@
   color: #fff;
   display: flex;
   min-height: 3.25rem;
-  position: relative;
-  z-index: 30;
 }
 
 .navbar-brand {
