@@ -6,13 +6,13 @@
   "scripts": {
     "clean": "rimraf public",
     "build": "npm run clean && cross-env NODE_ENV=production webpack",
-    "deploy": "now ./public --local-config=../now.json && now alias && now remove ygo --safe",
-    "start": "webpack-serve --config ./webpack.config.js --port 3000"
+    "deploy": "now && now alias && now remove ygo --safe",
+    "start": "webpack-serve --config ./webpack.config.js --port 3000",
+    "now-start": "serve --single ./public"
   },
   "now": {
     "name": "ygo",
-    "alias": "ygo",
-    "files": "./public"
+    "alias": "ygo"
   },
   "browserslist": "> 5%",
   "keywords": [],
@@ -36,6 +36,7 @@
     "postcss-loader": "^2.1.5",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.2",
+    "serve": "^10.0.0",
     "style-loader": "^0.21.0",
     "ts-loader": "^4.4.2",
     "typescript": "^3.0.3",
