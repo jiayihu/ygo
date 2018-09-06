@@ -2,6 +2,7 @@
 @import '_normalize/text-level.css';
 
 :host {
+  contain: content;
   display: block;
 }
 

@@ -3,6 +3,7 @@
 @import '_normalize/misc.css';
 
 :host {
+  contain: content;
   display: block;
 }
 

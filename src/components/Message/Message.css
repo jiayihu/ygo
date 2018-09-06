@@ -1,6 +1,7 @@
 @import '_normalize/box-sizing.css';
 
 :host {
+  contain: content;
   display: block;
 }
 

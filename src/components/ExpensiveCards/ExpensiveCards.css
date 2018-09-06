@@ -2,6 +2,7 @@
 @import '_normalize/sections.css';
 
 :host {
+  contain: content;
   display: block;
 }
 

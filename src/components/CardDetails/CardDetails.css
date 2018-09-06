@@ -2,6 +2,7 @@
 @import '_normalize/embedded.css';
 
 :host {
+  contain: content;
   display: block;
 }
 
