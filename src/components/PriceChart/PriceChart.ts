@@ -42,13 +42,18 @@ export class PriceChart extends HyperHTMLElement<State> {
   }
 
   private computeData(history: Price[]): Chart.ChartData {
-    const labels = history.map(price => {
+    const width = this.getBoundingClientRect().width;
+    const period = Math.floor(history.length / (width / 32));
+    const normalizedHistory = history
+      .reverse() // From old to recent
+      .filter((_, index) => index % period === 0);
+    const labels = history.filter((_, index) => index % period === 0).map(price => {
       const format = { month: 'numeric', day: 'numeric' };
 
       return new Date(price.updatedAt).toLocaleDateString(undefined, format);
     });
-    const lowData = history.map(price => price.low);
-    const averageData = history.map(price => price.average);
+    const lowData = normalizedHistory.map(price => price.low);
+    const averageData = normalizedHistory.map(price => price.average);
 
     return {
       labels,

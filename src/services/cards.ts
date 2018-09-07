@@ -65,17 +65,14 @@ export function getCardHistory(printTag: string, rarity: string): Promise<Price[
   const encodedRarity = encodeURIComponent(rarity);
 
   return request(`price_history/${encodedTag}?rarity=${encodedRarity}`).then((prices: any[]) => {
-    return prices
-      .map((price: any) => {
-        return {
-          high: price.price_high,
-          low: price.price_low,
-          average: price.price_average,
-          updatedAt: price.created_at
-        } as Price;
-      })
-      .slice(0, 30) // Only last month
-      .reverse();
+    return prices.map((price: any) => {
+      return {
+        high: price.price_high,
+        low: price.price_low,
+        average: price.price_average,
+        updatedAt: price.created_at
+      } as Price;
+    });
   });
 }
 
