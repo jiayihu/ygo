@@ -30,7 +30,7 @@
 }
 
 .cover {
-  border: 1px solid var(--darkest, #4e342e);
+  border: 1px solid var(--darkest);
   border-radius: 5px; /* some covers has white corners */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin-right: 1rem;

@@ -25,7 +25,7 @@
 }
 
 .navbar-brand:hover {
-  background-color: var(--hover, var(--dark, #67412e));
+  background-color: var(--hover, var(--dark));
   color: white;
 }
 

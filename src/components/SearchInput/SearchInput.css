@@ -35,7 +35,7 @@ input {
 }
 
 .input {
-  background-color: var(--darkest, #4e342e);
+  background-color: var(--darkest);
   color: whitesmoke;
   display: block;
   max-width: 100%;
@@ -43,7 +43,7 @@ input {
 }
 
 .input:focus {
-  box-shadow: 0 0 0 0.125em var(--primary, #9d7150);
+  box-shadow: 0 0 0 0.125em var(--primary);
   outline: none;
 }
 
@@ -77,33 +77,33 @@ input {
 }
 
 .awesomplete > ul {
-  background: var(--dark, #67412e);
+  background: var(--dark);
   color: white;
 }
 
 .awesomplete > ul:before {
-  background: var(--dark, #67412e);
+  background: var(--dark);
 }
 
 .awesomplete > ul > li:hover {
-  background: var(--primary, #9d7150);
+  background: var(--primary);
   color: white;
 }
 
 .awesomplete > ul > li[aria-selected='true'] {
-  background: var(--primary, #9d7150);
+  background: var(--primary);
 }
 
 .awesomplete mark {
-  background: var(--gold, #fbc02d);
-  color: var(--darkest, #4e342e);
+  background: var(--gold);
+  color: var(--darkest);
 }
 
 .awesomplete li:hover mark {
-  background: var(--gold, #fbc02d);
+  background: var(--gold);
 }
 
 .awesomplete li[aria-selected='true'] mark {
-  background: var(--darkest, #4e342e);
+  background: var(--darkest);
   color: inherit;
 }

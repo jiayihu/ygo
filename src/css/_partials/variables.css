@@ -9,6 +9,10 @@
   --silver: #e0e0e0;
   --bronze: #bf360c;
 
+  --shadow1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --shadow3: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
   --spacing-none: 0;
   --spacing-extra-small: 0.25rem;
   --spacing-small: 0.5rem;
