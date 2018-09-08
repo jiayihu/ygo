@@ -39,7 +39,7 @@ export class Select extends HyperHTMLElement {
     this.render();
   }
 
-  handleChange = (event: Event) => {
+  handleChange(event: Event) {
     const target = event.target! as HTMLSelectElement;
     const value = target.value;
     const label = target.textContent!;
@@ -48,7 +48,7 @@ export class Select extends HyperHTMLElement {
       detail: { value, label }
     });
     this.dispatchEvent(dispatchedEvent);
-  };
+  }
 
   render() {
     const options = this.data

@@ -42,7 +42,7 @@ export class App extends HyperHTMLElement<State> {
     `;
   }
 
-  private handleCardRoute = (ctx: Ctx) => {
+  private handleCardRoute(ctx: Ctx) {
     const cardName = ctx.params.name;
 
     // Avoid flash of spinner in case of cached card
@@ -67,16 +67,16 @@ export class App extends HyperHTMLElement<State> {
         this.renderError(message);
         this.render();
       });
-  };
+  }
 
-  private handleHomeRoute = () => {
+  private handleHomeRoute() {
     this.renderRoute`
       <ygo-search-input onsearch=${this.handleCardSearch}></ygo-search-input>
       <ygo-expensive-cards oncardSelection=${this.handleCardSelection} />
     `;
     this.setState({ card: null });
     this.resetScroll();
-  };
+  }
 
   private configureRoutes() {
     this.router.get('/card/:name', this.handleCardRoute);
@@ -94,7 +94,7 @@ export class App extends HyperHTMLElement<State> {
     this.router.navigate(this.getCurrentRoute());
   }
 
-  handleCardSearch = (event: SearchEvent): void => {
+  handleCardSearch(event: SearchEvent): void {
     const cardName = event.detail.query;
 
     if (!cardName) {
@@ -103,21 +103,21 @@ export class App extends HyperHTMLElement<State> {
     }
 
     this.router.navigate(`/card/${cardName}`);
-  };
+  }
 
-  handleCardSelection = (event: CardSelectionEvent): void => {
+  handleCardSelection(event: CardSelectionEvent): void {
     const cardName = event.detail.name;
 
     if (!cardName) return;
 
     this.router.navigate(`/card/${cardName}`);
-  };
+  }
 
-  handleRouteChange = (event: RouteChangeEvent): void => {
+  handleRouteChange(event: RouteChangeEvent): void {
     const route: string = event.detail.route;
     this.router.navigate(route);
     this.render();
-  };
+  }
 
   render() {
     const { card } = this.state;

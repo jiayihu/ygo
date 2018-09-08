@@ -29,14 +29,14 @@ export class CardPreview extends HyperHTMLElement {
     this.render();
   }
 
-  handleCardClick = () => {
+  handleCardClick() {
     const dispatchedEvent: CardSelectionEvent = new CustomEvent('cardSelection', {
       detail: { name: this.name! },
       bubbles: true,
       composed: true
     });
     this.dispatchEvent(dispatchedEvent);
-  };
+  }
 
   render() {
     if (!this.name || !this.cover || !this.price) {

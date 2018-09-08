@@ -62,14 +62,14 @@ export class SearchInput extends HyperHTMLElement<State> {
     this.render();
   }
 
-  handleInput = (event: KeyboardEvent) => {
+  handleInput(event: KeyboardEvent) {
     const key = event.key;
 
     if (key === 'Enter') {
       const query: string = (event.target! as HTMLInputElement).value;
       this.search(query);
     }
-  };
+  }
 
   render() {
     return this.html`

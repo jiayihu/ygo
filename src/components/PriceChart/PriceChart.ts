@@ -154,7 +154,7 @@ export class PriceChart extends HyperHTMLElement<State> {
     if (this.chart && attr === 'name') this.updateCard(curr);
   }
 
-  handleChoice = (event: ChoiceEvent) => {
+  handleChoice(event: ChoiceEvent) {
     if (!this.state.cardPrices) return;
 
     const printTag = event.detail.value;
@@ -164,7 +164,7 @@ export class PriceChart extends HyperHTMLElement<State> {
 
     this.setState({ selected: cardPrice });
     this.updateHistory(printTag, cardPrice.rarity);
-  };
+  }
 
   render() {
     if (!this.state.selected) {

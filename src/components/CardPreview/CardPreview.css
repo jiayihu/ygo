@@ -8,8 +8,9 @@
 }
 
 .preview {
-  background-color: var(--primary);
+  background-color: var(--primary, var(--light));
   border: 2px solid var(--primary);
+  border-radius: 4px;
   box-shadow: var(--shadow1);
   padding: 2rem 0 0;
   margin-top: 8rem;
@@ -22,7 +23,6 @@
 
 .details {
   align-items: center;
-  background-color: #a1887f;
   display: flex;
   flex-direction: column;
   height: 10rem;

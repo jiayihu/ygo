@@ -26,7 +26,7 @@ export class Navbar extends HyperHTMLElement {
     this.render();
   }
 
-  handleClick = (event: MouseEvent) => {
+  handleClick(event: MouseEvent) {
     event.preventDefault();
 
     const anchorEl = event.target! as HTMLAnchorElement;
@@ -34,7 +34,7 @@ export class Navbar extends HyperHTMLElement {
       detail: { route: anchorEl.pathname } // `href` property includes the host
     });
     this.dispatchEvent(dispatchedEvent);
-  };
+  }
 
   render() {
     const homeText = !this.route || this.route === '/' ? 'Yu-Gi-Oh!' : '← Back';
