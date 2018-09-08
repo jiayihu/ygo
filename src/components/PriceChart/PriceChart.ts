@@ -150,6 +150,13 @@ export class PriceChart extends HyperHTMLElement<State> {
     this.updateCard(this.name);
   }
 
+  disconnectedCallback() {
+    if (this.chart) {
+      this.chart.destroy();
+      this.chart = null;
+    }
+  }
+
   attributeChangedCallback(attr: string, prev: string, curr: string) {
     if (this.chart && attr === 'name') this.updateCard(curr);
   }
