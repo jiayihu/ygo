@@ -54,7 +54,7 @@ export class CardDetails extends HyperHTMLElement<State> {
     return this.html`
       <style>${style}</style>
 
-      <div class="card" style=${`background-color: ${cardColor}`}>
+      <div class="card" style=${{ backgroundColor: cardColor }}>
         <div class="header">
           <div class="cover-wrapper">
             <img 
@@ -64,7 +64,7 @@ export class CardDetails extends HyperHTMLElement<State> {
               width="256"
               height="375"
               crossorigin="anonymous"
-              style=${`background-color: ${coverColor}`}
+              style=${{ backgroundColor: coverColor }}
             />
           </div>
           <div class="details">

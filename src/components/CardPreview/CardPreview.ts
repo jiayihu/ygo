@@ -57,7 +57,7 @@ export class CardPreview extends HyperHTMLElement {
             crossorigin="anonymous"
             onclick=${this.handleCardClick}
           />
-          <h3 class="name" style=${`font-size: ${nameSize}`} onclick=${this.handleCardClick}>
+          <h3 class="name" style=${{ fontSize: nameSize }} onclick=${this.handleCardClick}>
             ${this.name}
           </h3>
           <div class="info">

@@ -127,10 +127,10 @@ export class App extends HyperHTMLElement<State> {
     return this.html`
       <style>${style}</style>
 
-      <div style=${`background-color: ${bgColor}`}>
+      <div style=${{ backgroundColor: bgColor }}>
         <ygo-navbar
           route=${activeRoute}
-          style=${`--hover: ${bgColor}`}
+          style=${{ '--hover': bgColor }}
           onrouteChange=${this.handleRouteChange}
         ></ygo-navbar>
 
@@ -140,7 +140,7 @@ export class App extends HyperHTMLElement<State> {
           </div>
         </section>
 
-        <footer style=${`background-color: ${darken(0.1, bgColor)}`}>
+        <footer style=${{ backgroundColor: darken(0.1, bgColor) }}>
           <p>Built by <a href="https://github.com/jiayihu" rel="noopener">jiayihu</a>, with the help of <a href="https://yugiohprices.com/"
               rel="noopener">yugiohprices.com</a> and <a href="https://www.pokedex.org/" rel="noopener">pokedex.org</a>.</p>
           <p>Yu-Gi-Oh! is a trademark of Kazuki Takahashi, Konami © 1996-2018. This website is in no way affiliated with Konami.</p>
