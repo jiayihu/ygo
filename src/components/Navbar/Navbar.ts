@@ -18,10 +18,6 @@ export class Navbar extends HyperHTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  connectedCallback() {
-    this.render();
-  }
-
   attributeChangedCallback() {
     this.render();
   }

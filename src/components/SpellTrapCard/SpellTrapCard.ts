@@ -11,10 +11,6 @@ export class SpellTrapCard extends HyperHTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  connectedCallback() {
-    if (this.data) this.render();
-  }
-
   attributeChangedCallback() {
     this.render();
   }

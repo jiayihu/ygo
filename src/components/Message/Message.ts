@@ -15,10 +15,6 @@ export class Message extends HyperHTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  connectedCallback() {
-    this.render();
-  }
-
   attributeChangedCallback() {
     this.render();
   }

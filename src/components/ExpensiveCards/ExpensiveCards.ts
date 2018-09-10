@@ -28,8 +28,6 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
   }
 
   connectedCallback() {
-    this.render();
-
     getMostExpensiveCards().then(cards => this.setState({ cards }));
   }
 
@@ -42,7 +40,7 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
           price=${card.price}
           rarity=${card.rarity}
           class="card"
-          style=${`--primary: var(--${this.getPositionColor(index)})`}
+          style=${{ '--primary': `var(--${this.getPositionColor(index)})` }}
         >
         </ygo-card-preview>
       `

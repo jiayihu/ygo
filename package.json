@@ -48,9 +48,9 @@
   "dependencies": {
     "awesomplete": "^1.1.2",
     "chart.js": "^2.7.2",
-    "hyperhtml": "^2.13.0",
+    "hyperhtml": "^2.13.2",
     "hyperhtml-app": "^0.2.3",
-    "hyperhtml-element": "^2.3.1",
+    "hyperhtml-element": "^3.0.1",
     "polished": "^2.0.3"
   }
 }

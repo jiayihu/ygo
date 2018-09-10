@@ -143,8 +143,6 @@ export class PriceChart extends HyperHTMLElement<State> {
   }
 
   connectedCallback() {
-    this.render();
-
     if (!this.name) return;
 
     this.updateCard(this.name);
@@ -174,7 +172,7 @@ export class PriceChart extends HyperHTMLElement<State> {
   }
 
   render() {
-    if (!this.state.selected) {
+    if (!this.name || !this.state.selected) {
       return this.html`<ygo-spinner />`;
     }
 

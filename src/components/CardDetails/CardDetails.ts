@@ -29,8 +29,6 @@ export class CardDetails extends HyperHTMLElement<State> {
   }
 
   connectedCallback() {
-    if (!this.shadowRoot) return;
-
     const name = this.name;
 
     if (name) getCard(name).then(card => this.setState({ card }));

@@ -130,7 +130,7 @@ export class App extends HyperHTMLElement<State> {
       <div style=${{ backgroundColor: bgColor }}>
         <ygo-navbar
           route=${activeRoute}
-          style=${`--hover: ${bgColor}`}
+          style=${{ '--hover': bgColor }}
           onrouteChange=${this.handleRouteChange}
         ></ygo-navbar>
 
