@@ -32,9 +32,7 @@ export class SearchInput extends HyperHTMLElement<State> {
     this.setState({ isLoading: true });
 
     searchCard(query).then(names => {
-      console.log(names);
       const instance = new Autocomplete(this.inputEl!, { list: names });
-      (window as any)['instance'] = instance;
       instance.evaluate();
 
       this.inputEl!.focus();
