@@ -5,6 +5,8 @@
   display: block;
 }
 
+/* stylelint-disable no-descending-specificity */
+
 .message {
   background-color: whitesmoke;
   border-radius: 4px;
@@ -192,9 +194,9 @@
 }
 
 .message-header + .message-body {
-  border-width: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  border-width: 0;
 }
 
 .message-body {
@@ -216,3 +218,5 @@
 .message-body pre code {
   background-color: transparent;
 }
+
+/* stylelint-enable */

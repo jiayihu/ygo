@@ -5,6 +5,7 @@
   from {
     opacity: 0.4;
   }
+
   to {
     opacity: 1;
   }
@@ -33,9 +34,9 @@
   border: 1px solid var(--darkest);
   border-radius: 5px; /* some covers has white corners */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  height: 24rem;
   margin-right: 1rem;
   max-width: none;
-  height: 24rem;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   width: 16rem;
 }

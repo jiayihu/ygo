@@ -10,10 +10,13 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(359deg);
   }
 }
+
+/* stylelint-disable */
 
 .select:not(.is-multiple):not(.is-loading)::after {
   border: 3px solid transparent;
@@ -46,8 +49,8 @@
 }
 
 .select select {
-  appearance: none;
   align-items: center;
+  appearance: none;
   border: 1px solid transparent;
   border-radius: 0;
   box-shadow: none;
@@ -422,14 +425,16 @@
   transform: none;
 }
 
-.select.is-loading.is-small:after {
+.select.is-loading.is-small::after {
   font-size: 0.75rem;
 }
 
-.select.is-loading.is-medium:after {
+.select.is-loading.is-medium::after {
   font-size: 1.25rem;
 }
 
-.select.is-loading.is-large:after {
+.select.is-loading.is-large::after {
   font-size: 1.5rem;
 }
+
+/* stylelint-enable */

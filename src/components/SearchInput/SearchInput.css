@@ -9,14 +9,15 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(359deg);
   }
 }
 
 input {
-  appearance: none;
   align-items: center;
+  appearance: none;
   border: 1px solid #0000;
   border-radius: 4px;
   box-shadow: none;
@@ -64,6 +65,7 @@ input {
   width: 1em;
 }
 
+/* stylelint-disable-next-line */
 .control.is-loading .spinner {
   position: absolute !important;
   right: 0.625em;
@@ -80,7 +82,7 @@ input {
   color: white;
 }
 
-.awesomplete > ul:before {
+.awesomplete > ul::before {
   background: var(--dark);
 }
 

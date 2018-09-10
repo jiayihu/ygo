@@ -12,8 +12,8 @@
   border: 2px solid var(--primary);
   border-radius: 4px;
   box-shadow: var(--shadow1);
-  padding: 2rem 0 0;
   margin-top: 8rem;
+  padding: 2rem 0 0;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -46,8 +46,8 @@
 
 .details:hover img {
   box-shadow: var(--shadow3);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transform: translate(-50%, -100%) scale(1.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .details h3 {
@@ -64,7 +64,4 @@
 .price {
   font-size: 1.125rem;
   font-weight: 600;
-}
-
-@media (min-width: 768px) {
 }

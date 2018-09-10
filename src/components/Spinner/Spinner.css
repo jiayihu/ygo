@@ -6,22 +6,21 @@
 }
 
 .spinner {
-  margin: 1rem auto;
-  width: 40px;
   height: 40px;
+  margin: 1rem auto;
   position: relative;
+  width: 40px;
 }
 
 .cube1,
 .cube2 {
+  animation: sk-cubemove 1.8s infinite ease-in-out;
   background-color: white;
-  width: 15px;
   height: 15px;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-
-  animation: sk-cubemove 1.8s infinite ease-in-out;
+  width: 15px;
 }
 
 .cube2 {
@@ -32,15 +31,19 @@
   25% {
     transform: translateX(42px) rotate(-90deg) scale(0.5);
   }
+
   50% {
     transform: translateX(42px) translateY(42px) rotate(-179deg);
   }
+
   50.1% {
     transform: translateX(42px) translateY(42px) rotate(-180deg);
   }
+
   75% {
-    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    transform: translateX(0) translateY(42px) rotate(-270deg) scale(0.5);
   }
+
   100% {
     transform: rotate(-360deg);
   }

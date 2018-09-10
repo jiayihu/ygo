@@ -1,0 +1,15 @@
+{
+  "extends": ["stylelint-config-recommended", "stylelint-config-standard"],
+  "rules": {
+    "custom-property-empty-line-before": null,
+    "order/order": ["custom-properties", "declarations"],
+		"order/properties-alphabetical-order": true,
+    "selector-type-no-unknown": [true, { "ignore": ["custom-elements"] }],
+    "value-list-comma-newline-after": null,
+    "declaration-colon-newline-after": null
+  },
+  "plugins": [
+		"stylelint-order"
+	],
+  "ignoreFiles": "src/css/_normalize/*.css"
+}
