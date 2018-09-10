@@ -2,7 +2,6 @@
 @import '_normalize/forms.css';
 
 :host {
-  contain: content;
   display: block;
 }
 
