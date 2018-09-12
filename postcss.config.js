@@ -8,7 +8,11 @@ const devPlugins = [
   cssImport({
     path: ['src/css/']
   }),
-  cssnext()
+  cssnext({
+    features: {
+      autoprefixer: { grid: true }
+    }
+  })
 ];
 
 const prodPlugins = [...devPlugins];

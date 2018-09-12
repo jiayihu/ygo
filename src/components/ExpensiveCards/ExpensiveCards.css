@@ -16,27 +16,21 @@
 }
 
 .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.card {
+  padding: 0.75rem;
+}
+
+.cards-top {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.card {
-  flex-grow: 0;
-  flex-shrink: 0;
+.cards-top .card {
+  flex-grow: 1;
   min-width: 16rem;
-  padding: 0.75rem;
-  width: 33.3333%;
-}
-
-.card:nth-child(1),
-.card:nth-child(2),
-.card:nth-child(3) {
-  flex-basis: 33.3333%;
-}
-
-@media screen and (min-width: 1088px) {
-  .card {
-    width: 25%;
-  }
 }

@@ -31,20 +31,41 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
     getMostExpensiveCards().then(cards => this.setState({ cards }));
   }
 
+  renderTopCard(card: YGOCardPreview, index: number) {
+    return wire(card)`
+      <ygo-card-preview
+        name=${card.name}
+        cover=${getCardImage(card.name)}
+        price=${card.price}
+        rarity=${card.rarity}
+        class="card"
+        style=${{ '--primary': `var(--${this.getPositionColor(index)})` }}
+      >
+      </ygo-card-preview>
+    `;
+  }
+
+  renderCard(card: YGOCardPreview, index: number) {
+    return wire(card)`
+      <ygo-card-preview
+        name=${card.name}
+        cover=${getCardImage(card.name)}
+        price=${card.price}
+        rarity=${card.rarity}
+        class="card"
+      >
+      </ygo-card-preview>
+    `;
+  }
+
   renderCards(cards: YGOCardPreview[]): HTMLElement[] {
-    return cards.map(
-      (card, index) => wire(card)`
-        <ygo-card-preview
-          name=${card.name}
-          cover=${getCardImage(card.name)}
-          price=${card.price}
-          rarity=${card.rarity}
-          class="card"
-          style=${{ '--primary': `var(--${this.getPositionColor(index)})` }}
-        >
-        </ygo-card-preview>
-      `
-    );
+    const top3 = cards.slice(0, 3).map((card, index) => this.renderTopCard(card, index));
+    const rest = cards.slice(3).map((card, index) => this.renderCard(card, index));
+
+    return [
+      wire()`<div class="cards cards-top">${top3}</div>`,
+      wire()`<div class="cards cards-rest">${rest}</div>`
+    ];
   }
 
   render() {
@@ -56,9 +77,7 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
 
       <div class="container">
         <h2 class="title">Most expensive cards</h2>
-        <div class="cards">
-          ${cards ? renderContent`${this.renderCards(cards)}` : renderContent`<ygo-spinner />`}
-        </div>
+        ${cards ? renderContent`${this.renderCards(cards)}` : renderContent`<ygo-spinner />`}
       </div>
     `;
   }
