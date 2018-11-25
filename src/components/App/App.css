@@ -15,11 +15,6 @@ a {
   padding: 3rem 1.5rem;
 }
 
-.container {
-  margin: 0 auto;
-  position: relative;
-}
-
 footer {
   font-size: 0.875rem;
   padding: 1rem 1rem 4rem 1rem;
@@ -27,18 +22,4 @@ footer {
 
 ygo-search-input {
   margin-bottom: 2rem;
-}
-
-@media screen and (min-width: 1088px) {
-  .container {
-    max-width: 960px;
-    width: 960px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .container {
-    max-width: 1152px;
-    width: 1152px;
-  }
 }

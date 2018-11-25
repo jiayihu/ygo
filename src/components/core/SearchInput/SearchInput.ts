@@ -2,8 +2,8 @@ import HyperHTMLElement from 'hyperhtml-element';
 import style from './SearchInput.css';
 import Autocomplete, { Awesomplete } from 'awesomplete';
 import awesompleteStyle from 'awesomplete/awesomplete.css';
-import { searchCard } from '../../services/cards';
-import { debounce } from '../../utils';
+import { searchCard } from '../../../services/cards';
+import { debounce } from '../../../utils';
 
 export interface SearchEvent extends CustomEvent {
   detail: { query: string };
