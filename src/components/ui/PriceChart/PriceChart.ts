@@ -1,9 +1,9 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import { Chart } from 'chart.js/dist/Chart.min.js';
 import style from './PriceChart.css';
-import { getCardPrices, getCardHistory } from '../../services/cards';
-import { YGOCardPrice, Price } from '../../domain/types';
-import { Option, ChoiceEvent } from '../Select/Select';
+import { getCardPrices, getCardHistory } from '../../../services/cards';
+import { YGOCardPrice, Price } from '../../../domain/types';
+import { Option, ChoiceEvent } from '../../core/Select/Select';
 
 type State = {
   cardPrices: YGOCardPrice[] | null;
@@ -47,11 +47,13 @@ export class PriceChart extends HyperHTMLElement<State> {
     const normalizedHistory = history
       .reverse() // From old to recent
       .filter((_, index) => index % period === 0);
-    const labels = history.filter((_, index) => index % period === 0).map(price => {
-      const format = { month: 'numeric', day: 'numeric' };
+    const labels = history
+      .filter((_, index) => index % period === 0)
+      .map(price => {
+        const format = { month: 'numeric', day: 'numeric' };
 
-      return new Date(price.updatedAt).toLocaleDateString(undefined, format);
-    });
+        return new Date(price.updatedAt).toLocaleDateString(undefined, format);
+      });
     const lowData = normalizedHistory.map(price => price.low);
     const averageData = normalizedHistory.map(price => price.average);
 

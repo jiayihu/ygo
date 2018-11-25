@@ -1,6 +1,6 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import style from './SpellTrapCard.css';
-import { YGOCard } from '../../domain/types';
+import { YGOCard } from '../../../domain/types';
 
 export class SpellTrapCard extends HyperHTMLElement {
   data: YGOCard | null = null;

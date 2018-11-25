@@ -5,10 +5,10 @@ import './core/Select/Select';
 import './core/Spinner/Spinner';
 
 import './App/App';
-import './CardDetails/CardDetails';
-import './CardPreview/CardPreview';
-import './ExpensiveCards/ExpensiveCards';
-import './MonsterCard/MonsterCard';
-import './Navbar/Navbar';
-import './PriceChart/PriceChart';
-import './SpellTrapCard/SpellTrapCard';
+import './ui/CardDetails/CardDetails';
+import './ui/CardPreview/CardPreview';
+import './ui/ExpensiveCards/ExpensiveCards';
+import './ui/MonsterCard/MonsterCard';
+import './ui/Navbar/Navbar';
+import './ui/PriceChart/PriceChart';
+import './ui/SpellTrapCard/SpellTrapCard';

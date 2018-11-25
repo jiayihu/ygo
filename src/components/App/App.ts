@@ -3,12 +3,12 @@ import hyperApp, { Ctx } from 'hyperhtml-app';
 import { darken } from 'polished';
 
 import style from './App.css';
-import { CardSelectionEvent } from '../CardPreview/CardPreview';
+import { CardSelectionEvent } from '../ui/CardPreview/CardPreview';
 import { YGOCard } from '../../domain/types';
 import { getCard } from '../../services/cards';
 import { getCardColor } from '../../domain/cards';
-import { RouteChangeEvent } from '../Navbar/Navbar';
-import { SearchEvent } from '../SearchInput/SearchInput';
+import { RouteChangeEvent } from '../ui/Navbar/Navbar';
+import { SearchEvent } from '../core/SearchInput/SearchInput';
 
 type State = {
   card: YGOCard | null;

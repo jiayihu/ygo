@@ -1,8 +1,8 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import style from './ExpensiveCards.css';
-import { getMostExpensiveCards } from '../../services/cards';
-import { getCardImage } from '../../domain/cards';
-import { YGOCardPreview } from '../../domain/types';
+import { getMostExpensiveCards } from '../../../services/cards';
+import { getCardImage } from '../../../domain/cards';
+import { YGOCardPreview } from '../../../domain/types';
 
 type State = {
   cards: YGOCardPreview[] | null;
@@ -13,7 +13,7 @@ const { wire } = HyperHTMLElement;
 export class ExpensiveCards extends HyperHTMLElement<State> {
   get defaultState(): State {
     return {
-      cards: null,
+      cards: null
     };
   }
 
@@ -64,7 +64,7 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
 
     return [
       wire()`<div class="cards cards-top">${top3}</div>`,
-      wire()`<div class="cards cards-rest">${rest}</div>`,
+      wire()`<div class="cards cards-rest">${rest}</div>`
     ];
   }
 

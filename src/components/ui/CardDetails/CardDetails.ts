@@ -1,8 +1,8 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import style from './CardDetails.css';
-import { getCard } from '../../services/cards';
-import { getCardImage, getCardColor, isMonster } from '../../domain/cards';
-import { YGOCard } from '../../domain/types';
+import { getCard } from '../../../services/cards';
+import { getCardImage, getCardColor, isMonster } from '../../../domain/cards';
+import { YGOCard } from '../../../domain/types';
 import { darken } from 'polished';
 
 type State = {

@@ -1,6 +1,6 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import style from './MonsterCard.css';
-import { YGOCard } from '../../domain/types';
+import { YGOCard } from '../../../domain/types';
 
 export class MonsterCard extends HyperHTMLElement {
   data: YGOCard | null = null;
