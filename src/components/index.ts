@@ -1,5 +1,7 @@
 import './core/Container/Container';
+import './core/Icons/Icons';
 import './core/Message/Message';
+import './core/Modal/Modal';
 import './core/SearchInput/SearchInput';
 import './core/Select/Select';
 import './core/Spinner/Spinner';

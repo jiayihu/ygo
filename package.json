@@ -50,6 +50,7 @@
     "hyperhtml": "^2.13.2",
     "hyperhtml-app": "^0.2.3",
     "hyperhtml-element": "^3.0.1",
+    "micromodal": "^0.3.2",
     "polished": "^2.0.3"
   }
 }
