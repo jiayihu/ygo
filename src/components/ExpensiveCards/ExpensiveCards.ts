@@ -13,7 +13,7 @@ const { wire } = HyperHTMLElement;
 export class ExpensiveCards extends HyperHTMLElement<State> {
   get defaultState(): State {
     return {
-      cards: null
+      cards: null,
     };
   }
 
@@ -39,7 +39,7 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
         price=${card.price}
         rarity=${card.rarity}
         class="card"
-        style=${{ '--primary': `var(--${this.getPositionColor(index)})` }}
+        style=${{ '--card-preview-bg': `var(--${this.getPositionColor(index)})` }}
       >
       </ygo-card-preview>
     `;
@@ -64,7 +64,7 @@ export class ExpensiveCards extends HyperHTMLElement<State> {
 
     return [
       wire()`<div class="cards cards-top">${top3}</div>`,
-      wire()`<div class="cards cards-rest">${rest}</div>`
+      wire()`<div class="cards cards-rest">${rest}</div>`,
     ];
   }
 

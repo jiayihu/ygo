@@ -130,14 +130,16 @@ export class App extends HyperHTMLElement<State> {
       <div style=${{ backgroundColor: bgColor }}>
         <ygo-navbar
           route=${activeRoute}
-          style=${{ '--hover': bgColor }}
+          style=${{ '--navbar-hover': bgColor }}
           onrouteChange=${this.handleRouteChange}
         ></ygo-navbar>
 
         <section class="app-section">
-          <div class=${`container ${activeRoute === '/' ? 'home' : activeRoute}`}>
-            ${this.routerOutletEl}
-          </div>
+          <ygo-container>
+            <div class=${`${activeRoute === '/' ? 'home' : activeRoute}`}>
+              ${this.routerOutletEl}
+            </div>
+          </ygo-container>
         </section>
 
         <footer style=${{ backgroundColor: darken(0.1, bgColor) }}>

@@ -2,6 +2,8 @@
 @import '_normalize/text-level.css';
 
 :host {
+  --navbar-hover: var(--dark);
+
   contain: content;
   display: block;
   position: sticky;
@@ -25,7 +27,7 @@
 }
 
 .navbar-brand:hover {
-  background-color: var(--hover, var(--dark));
+  background-color: var(--navbar-hover);
   color: white;
 }
 

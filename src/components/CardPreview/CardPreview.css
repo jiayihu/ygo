@@ -3,13 +3,15 @@
 @import '_normalize/embedded.css';
 
 :host {
+  --card-preview-bg: var(--primary);
+
   contain: content;
   display: block;
 }
 
 .preview {
-  background-color: var(--primary, var(--light));
-  border: 2px solid var(--primary);
+  background-color: var(--card-preview-bg);
+  border: 2px solid var(--card-preview-bg);
   border-radius: 4px;
   box-shadow: var(--shadow1);
   margin-top: 8rem;
@@ -32,7 +34,7 @@
 }
 
 .details img {
-  background-color: var(--primary);
+  background-color: var(--card-preview-bg);
   border: 1px solid var(--darkest);
   box-shadow: var(--shadow1);
   cursor: pointer;
