@@ -26,7 +26,7 @@ export class CardPreview extends HyperHTMLElement {
   }
 
   handleCardClick() {
-    const dispatchedEvent: CardSelectionEvent = new CustomEvent('cardSelection', {
+    const dispatchedEvent: CardSelectionEvent = new CustomEvent('cardselection', {
       detail: { name: this.name! },
       bubbles: true,
       composed: true

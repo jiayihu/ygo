@@ -1,4 +1,5 @@
 @import '_normalize/box-sizing.css';
+@import '_normalize/forms.css';
 @import '_normalize/text-level.css';
 
 :host {
@@ -9,6 +10,10 @@
   position: sticky;
   top: 0;
   z-index: 30;
+}
+
+ygo-container {
+  display: flex;
 }
 
 .navbar {
@@ -31,11 +36,28 @@
   color: white;
 }
 
-.navbar-brand .navbar-item {
+.navbar-item {
   align-items: center;
+  background: none;
+  border: none;
   color: #fff;
   cursor: pointer;
   display: flex;
   font-weight: 600;
   text-decoration: none;
+}
+
+.navbar-menu {
+  align-items: stretch;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.navbar-end {
+  align-items: stretch;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  padding: 0;
 }

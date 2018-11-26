@@ -72,7 +72,7 @@ export class App extends HyperHTMLElement<State> {
   private handleHomeRoute() {
     this.renderRoute`
       <ygo-search-input onsearch=${this.handleCardSearch}></ygo-search-input>
-      <ygo-expensive-cards oncardSelection=${this.handleCardSelection} />
+      <ygo-expensive-cards oncardselection=${this.handleCardSelection} />
     `;
     this.setState({ card: null });
     this.resetScroll();
