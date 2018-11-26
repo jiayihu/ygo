@@ -1,6 +1,5 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import style from './Navbar.css';
-import { getExchangeRate } from '../../../services/currency';
 
 export interface RouteChangeEvent extends CustomEvent {
   detail: { route: string };
@@ -17,12 +16,6 @@ export class Navbar extends HyperHTMLElement {
     super();
 
     this.attachShadow({ mode: 'open' });
-  }
-
-  connectedCallback() {
-    getExchangeRate().then(response => {
-      console.log(response);
-    });
   }
 
   attributeChangedCallback() {

@@ -12,8 +12,8 @@
 
 .modal__container {
   background-color: #fff;
-  border-radius: 4px;
   box-sizing: border-box;
+  color: var(--darkest);
   max-height: 100vh;
   max-width: 500px;
   overflow-y: auto;
@@ -28,7 +28,6 @@
 
 .modal__title {
   box-sizing: border-box;
-  color: #00449e;
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.25;
@@ -46,7 +45,6 @@
 }
 
 .modal__content {
-  color: rgba(0, 0, 0, 0.8);
   line-height: 1.5;
   margin-bottom: 2rem;
   margin-top: 2rem;

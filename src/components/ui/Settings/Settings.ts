@@ -1,12 +1,17 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import style from './Settings.css';
+import { setCurrency } from '../../../services/currency';
+
+const { wire } = HyperHTMLElement;
 
 type State = {
   type: 'OPEN' | 'CLOSED';
   currency: 'USD' | 'EUR' | 'GBP';
 };
 
-const { wire } = HyperHTMLElement;
+export interface CurrencyChangeEvent extends CustomEvent {
+  detail: { currency: 'USD' | 'EUR' | 'GBP' };
+}
 
 export class Settings extends HyperHTMLElement<State> {
   get defaultState(): State {
@@ -33,7 +38,15 @@ export class Settings extends HyperHTMLElement<State> {
   }
 
   handleCurrencyChange(currency: 'USD' | 'EUR' | 'GBP') {
+    setCurrency(currency);
     this.setState({ currency });
+
+    const event: CurrencyChangeEvent = new CustomEvent('currencychange', {
+      detail: { currency },
+      bubbles: true,
+      composed: true
+    });
+    this.dispatchEvent(event);
   }
 
   render() {

@@ -1,5 +1,6 @@
 import HyperHTMLElement from 'hyperhtml-element';
 import style from './CardPreview.css';
+import { convert } from '../../../services/currency';
 
 export interface CardSelectionEvent extends CustomEvent {
   detail: { name: string };
@@ -57,7 +58,7 @@ export class CardPreview extends HyperHTMLElement {
             ${this.name}
           </h3>
           <div class="info">
-            <span class="price">$${this.price}</span>
+            <span class="price">${convert(Number(this.price))}</span>
             <small>(${this.rarity})</small>
           </div>
         </div>
