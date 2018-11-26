@@ -1,0 +1,49 @@
+.buttons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.buttons ::slotted(ygo-button) {
+  margin-bottom: 0.5rem;
+}
+
+.buttons ::slotted(ygo-button:not(:last-child):not(.is-fullwidth)) {
+  margin-right: 0.5rem;
+}
+
+.buttons:last-child {
+  margin-bottom: -0.5rem;
+}
+
+.buttons:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.buttons.has-addons ::slotted(ygo-button:not(:first-child)) {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.buttons.has-addons ::slotted(ygo-button:not(:last-child)) {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  margin-right: -1px;
+}
+
+.buttons.has-addons ::slotted(ygo-button:last-child) {
+  margin-right: 0;
+}
+
+.buttons.has-addons ::slotted(ygo-button.is-expanded) {
+  flex-grow: 1;
+}
+
+.buttons.is-centered {
+  justify-content: center;
+}
+
+.buttons.is-right {
+  justify-content: flex-end;
+}

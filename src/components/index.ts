@@ -1,3 +1,5 @@
+import './core/Button/Button';
+import './core/Buttons/Buttons';
 import './core/Container/Container';
 import './core/Icons/Icons';
 import './core/Message/Message';
@@ -13,4 +15,5 @@ import './ui/ExpensiveCards/ExpensiveCards';
 import './ui/MonsterCard/MonsterCard';
 import './ui/Navbar/Navbar';
 import './ui/PriceChart/PriceChart';
+import './ui/Settings/Settings';
 import './ui/SpellTrapCard/SpellTrapCard';
